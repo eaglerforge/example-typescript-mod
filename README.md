@@ -12,4 +12,4 @@ Bun is experimental on windows. <br>
 
 ## Notes
 - If you get errors when you try to compile, paste in this line of code above anywhere that mentions ModAPI : `//@ts-ignore`
-- Build task will generate source maps and it will watch your files.
+- Build task will generate source maps and it will watch your files.+

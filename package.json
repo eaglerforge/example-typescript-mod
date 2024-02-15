@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Example typescript mod for eaglerforge.",
   "scripts": {
-    "build": "bun build --bundle ./src/main.ts --outdir=out/ --outfile=out/plugin.js --sourcemap=inline --watch"
+    "build": "bun build --bundle ./src/main.ts --outdir=out/ --outfile=out/plugin.js --sourcemap=inline --watch --minify"
   },
   "author": "your name",
   "devDependencies": {
