@@ -2,8 +2,7 @@
 Example EaglerForge mod template.
 
 ## How to build?
-[!WARNING]
-Bun is experimental on windows. <br>
+WARNING : Bun is experimental on windows
 
 1. Run `bun install`
 2. Modify your files accordingly.
