@@ -1,16 +1,13 @@
 {
   "name": "example-typescript-mod",
   "version": "1.0.0",
-  "description": "example typescript mod for eaglerforge",
+  "description": "Example typescript mod for eaglerforge.",
   "scripts": {
-    "build": "webpack"
+    "build": "bun build --bundle ./src/main.ts --outdir=out/ --outfile=out/plugin.js --sourcemap=inline --watch"
   },
   "author": "your name",
   "devDependencies": {
     "css-loader": "^6.8.1",
-    "ts-loader": "^9.4.4",
-    "typescript": "^5.2.2",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "ts-loader": "^9.4.4"
   }
 }
