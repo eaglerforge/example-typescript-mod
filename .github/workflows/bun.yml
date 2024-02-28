@@ -28,7 +28,6 @@ jobs:
     - name: Build
       run: |
         npm install
-        bun install
         bun run build-bun
         
     - name: Write changes to repository
