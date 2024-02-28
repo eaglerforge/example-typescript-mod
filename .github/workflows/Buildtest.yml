@@ -1,4 +1,4 @@
-name: Build and Notify
+name: buildtest.exe
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       run: npm install -g esbuild
 
     - name: Building project..
-      run: esbuild --bundle ../src/Main.ts --outfile=out/plugin.js --sourcemap=inline # custom
+      run: esbuild --bundle src/Main.ts --outfile=out/plugin.js --sourcemap=inline # custom
       env:
         NODE_ENV: production
 
