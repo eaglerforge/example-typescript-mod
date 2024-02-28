@@ -22,7 +22,7 @@ jobs:
       run: npm install -g esbuild
 
     - name: Building project..
-      run: npm run build-es
+      run: esbuild --bundle ../src/Main.ts --outfile=out/plugin.js --sourcemap=inline # custom
       env:
         NODE_ENV: production
 
