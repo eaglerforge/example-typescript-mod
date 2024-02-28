@@ -75,9 +75,6 @@ interface ModAPI {
      */
     drawRect: ({left: Number, top: Number, right: Number, bottom: Number, color: Number});
     /**
-     * ?
-     */
-    /**
      * This method is used to add event listeners to the event name specified.
      * @param eventName 
      * @param callback 
@@ -160,11 +157,11 @@ interface PlatformAPI {
 
 interface emptygui {
     // No documentations yet.
-    CloseGUI() : void
+    CloseGUI() : void;
     // No documentations yet.
-    isInitialized() : Number
+    isInitialized() : Number;
     // No documentations yet.
-    DisplayGUI: ({drawdefaultbg : boolean})
+    DisplayGUI: ({drawdefaultbg : boolean});
 }
 export let ModAPI: ModAPI;
 
