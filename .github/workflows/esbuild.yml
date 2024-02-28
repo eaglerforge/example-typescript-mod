@@ -26,8 +26,8 @@ jobs:
 
     - name: Build
       run: |
-        npm install -g esbuild
         npm install
+        npm install -g esbuild
         node run build-es
         
 #    - name: Write changes to repository
