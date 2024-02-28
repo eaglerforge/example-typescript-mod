@@ -1,4 +1,4 @@
-name: Build Test
+name: Build and Notify
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
     - name: Setting environment...
       uses: actions/setup-node@v2
       with:
-        node-version: 21.6.2 
+        node-version: 21
 
     - name: Installing dependencies..
       run: npm install -g esbuild
@@ -25,3 +25,7 @@ jobs:
       run: npm run build-es
       env:
         NODE_ENV: production
+
+    - name: bad devs!!!!!
+      if: failure()
+      run: exit 1
