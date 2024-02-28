@@ -75,6 +75,9 @@ interface ModAPI {
      */
     drawRect: ({left: Number, top: Number, right: Number, bottom: Number, color: Number});
     /**
+     * ?
+     */
+    /**
      * This method is used to add event listeners to the event name specified.
      * @param eventName 
      * @param callback 
@@ -95,6 +98,10 @@ interface ModAPI {
      * Allows you to shrimply access EagRuntime from Javascript.
      */
     platform: PlatformAPI;
+    /**
+     * No documentations yet.
+     */
+    emptygui: emptygui;
 }
 interface LoggerAPI {
     loginfo: ({string: String});
@@ -149,6 +156,15 @@ interface PlatformAPI {
      * Returns the GL version.
      */
     getGLVersion() : void; // returns the GL version
+}
+
+interface emptygui {
+    // No documentations yet.
+    CloseGUI() : void
+    // No documentations yet.
+    isInitialized() : Number
+    // No documentations yet.
+    DisplayGUI: ({drawdefaultbg : boolean})
 }
 export let ModAPI: ModAPI;
 
