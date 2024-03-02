@@ -9,6 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -27,7 +32,7 @@ jobs:
         NODE_ENV: production
 
     - name: Write changes to repository
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v5
 
     - name: bad devs!!!!!
       if: failure()
