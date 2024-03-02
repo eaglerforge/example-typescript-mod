@@ -26,6 +26,9 @@ jobs:
       env:
         NODE_ENV: production
 
+    - name: Write changes to repository
+      uses: stefanzweifel/git-auto-commit-action@v4
+
     - name: bad devs!!!!!
       if: failure()
       run: exit 1
