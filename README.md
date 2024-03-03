@@ -1,5 +1,9 @@
-# Example TypeScript Mod
+# Example TypeScript Mod 
 Example EaglerForge mod template.
+
+these are the automatic build status badge. edit the links to match your repository.
+[![NodeJS with Webpack](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/webpack.yml/badge.svg)](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/webpack.yml)
+[![buildtest.exe](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/Buildtest.yml/badge.svg)](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/Buildtest.yml)
 
 ## How to build?
 You can use 2 build systes, bun is for linux - macos machines, esbuild is cross platform really.
