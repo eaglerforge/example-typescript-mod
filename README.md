@@ -1,12 +1,8 @@
-# Example TypeScript Mod 
-Example EaglerForge mod template.
-
-these are the automatic build status badge. edit the links to match your repository.
-[![NodeJS with Webpack](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/webpack.yml/badge.svg)](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/webpack.yml)
-[![buildtest.exe](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/Buildtest.yml/badge.svg)](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/Buildtest.yml)
+# Example TypeScript Mod [![NodeJS with Webpack](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/webpack.yml/badge.svg)](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/webpack.yml) [![buildtest.exe](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/Buildtest.yml/badge.svg)](https://github.com/eaglerforge/example-typescript-mod/actions/workflows/Buildtest.yml)
+Example EaglerForge mod template. ( too crazy to think )
 
 ## How to build?
-You can use 3 build systes, bun is for linux - macos machines, esbuild is cross platform really.
+You can use 3 build systems, bun is for linux - macos machines, esbuild/webpack is cross platform really.
 
 # 1 - webpack
 
@@ -28,5 +24,4 @@ WARNING : Bun is experimental on windows
 3. Run `npn run build-es`
 4. profit ( again )
 ## Notes
-- you need have npm installed for all builds to work. you can install node.js on windows and it will install npm automaticlly
-- all build tasks will generate source maps and only the 2 and 3 build task will watch your files.
+- All build tasks will generate source maps and only the 2 and 3 build task will watch your files.
