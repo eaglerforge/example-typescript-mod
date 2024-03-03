@@ -9,160 +9,202 @@
  * https://eaglerforge.github.io/
  */
 
-interface ModAPI {
+
+/**
+The Mod API consists of a global JavaScript object on the window, called, very simply, ModAPI.
+ */
+declare namespace ModAPI {
+    namespace events {
+        let types: string[];
+        namespace listeners {
+            let event: any[];
+        }
+        function newEvent(name: string): void;
+        function callEvent(name: string, data: any): void;
+    }
+    namespace globals {
+        function _initUpdate(): void;
+    }
+
     /**
-     * A ItemData dictionary of all item types, and block-item types. [Auto]
+    Represents the player.
      */
-    items: {};
-    /**
-     * A BlockData dictionary of all block types. [Auto]
-     */
-    blocks: {};
-    /**
-     * A MaterialData dictionary of all the block materials. [Auto]
-     */
-    materials: {};
-    /**
-     * An EnchantmentData dictionary of all the in-game enchantments. [Auto]
-     */
-    enchantments: {};
-    /**
-     * This is the Minecraft instance exposed to JavaScript. It has no wrapping, and so many properties will be illegible.
-     */
-    mcinstance: Object;
-    /**
-     * Returns the version of EaglerForge.
-     */
-    version: String;
-    /**
-     * Returns the brand of the Eaglercraft client, taken from ClientBrandRetriever.java.
-     */
-    clientBrand: String;
-    /**
-     * uwuifys your string... ( vexdev: whos idea is this??? )
-     */
-    uwuify: ({string: String});
-    /**
-     * Triggers a left click ingame.
-     */
-    clickMouse();
-    /**
-     * Triggers a right click ingame.
-     */
-    rightClickMouse();
-    /**
-     * Returns the current fps.
-     */
-    getFPS();
-    /**
-     * Returns screen height.
-     */
-    getdisplayHeight();
-    /**
-     * Returns screen width.
-     */
-    getdisplayWidth();
-    /**
-     * Draws your string to screen and needs to be ran when the drawhud event is called. the color parameter needs be hex but # is replaced with 0x.
-     */
-    drawStringWithShadow: ({msg: String, x: Number, y: Number, color: Number});
-    /**
-     * Same as drawStringWithShadow but doesnt draw the shadow.
-     */
-    drawString: ({msg: String, x: Number, y: Number, color: Number});
-    /**
-     * Draws a rect to screen and needs to be ran when the drawhud event is called. the color parameter needs be hex but # is replaced with 0x
-     */
-    drawRect: ({left: Number, top: Number, right: Number, bottom: Number, color: Number});
-    /**
-     * This method is used to add event listeners to the event name specified.
-     * @param eventName 
-     * @param callback 
-     */
-    addEventListener(eventName: string, callback: Function);
-    /**
-     * This method is used to remove event listeners to the event name specified.
-     * @param eventName 
-     * @param callback 
-     * @param slow 
-     */
-    removeEventListener(eventName: string, callback: Function, slow: Boolean);
-    /**
-     * Allows you to access the Log4J library from Javascript.
-     */
-    logger: LoggerAPI;
-    /**
-     * Allows you to shrimply access EagRuntime from Javascript.
-     */
-    platform: PlatformAPI;
-    /**
-     * No documentations yet.
-     */
-    emptygui: emptygui;
-}
-interface LoggerAPI {
-    loginfo: ({string: String});
-    logerror: ({string: String});
-    logdebug: ({string: String});
-    logwarn: ({string: String});
-    logfatal: ({string: String}); //fatalcodes
-    logtrace: ({string: String});
-}
-interface PlatformAPI {
-    /**
-     * Turns true if the client that loaded the mod is an offline download and turns false if the client is a website (using web folder).
-     */
-    isOfflineDownload() : Boolean;
-    /**
-     * Returns free memory.
-     */
-    freeMemory() : Number;
-    /**
-     * Returns max memory.
-     */
-    maxMemory() : Number;
-    /**
-     * Returns total memory.
-     */
-    totalMemory() : Number;
-    /**
-     * you are retarded if you dont understand this.
-     */
-    openLink: ({url: String});
-    /**
-     * Gets the user's clipboard.
-     */
-    getClipboard() : String;
-    /**
-     * Checks if recording the screen is supported.
-     */
-    recSupported() : Boolean;
-    /**
-     * Toggles the screen recorder.
-     */
-    toggleRec() : void;
-    /**
-     * Returns the UserAgent.
-     */
-    getUserAgentString() : void;
-    /**
-     * Self explanatory.
-     */
-    getGLRenderer() : void;
-    /**
-     * Returns the GL version.
-     */
-    getGLVersion() : void; // returns the GL version
+    namespace player {
+        function isBurning(): boolean;
+        function isPushedByWater(): boolean;
+        function isEating(): boolean;
+        function isEntityAlive(): boolean;
+        function isEntityInsideOpaqueBlock(): boolean;
+        function isImmuneToExplosions(): boolean;
+        function isInLava(): boolean;
+        function isInWater(): boolean;
+        function isInvisible(): boolean;
+        function isPushedByWater(): boolean;
+        function isRiding(): boolean;
+        function isSilent(): boolean;
+        function isSneaking(): boolean;
+        function isSprinting(): boolean;
+        function isWet(): boolean;
+        function setBeenAttacked(): void;
+        function setDead(): void;
+        function setInWeb(): void;
+        function setOnFireFromLava(): void;
+        function getUUID(): string;
+        function getAir(): number;
+        function getAlwaysRenderNameTag(): boolean;
+        function getAlwaysRenderNameTagForRender(): boolean;
+        function getBrightness(json: any): number;
+        function getBrightnessForRender(json: any): number;
+        function reload(): void;
+        function getCollisionBorderSize(): number;
+        let lastReportedPosX: number
+        let lastReportedPosY: number
+        let lastReportedPosZ: number
+        let lastReportedYaw: number
+        let lastReportedPitch: number
+        let serverSneakState: boolean
+        let serverSprintState: boolean
+        let positionUpdateTicks: number
+        let hasValidHealth: boolean
+        let clientBrand: string
+        let sprintToggleTimer: number
+        let sprintingTicksLeft: number
+        let renderArmYaw: number
+        let renderArmPitch: number
+        let prevRenderArmYaw: number
+        let prevRenderArmPitch: number
+        let horseJumpPower: number
+        let horseJumpPowerCounter: number
+        let x: number;
+        let y: number;
+        let z: number;
+        let chunkCoordX: number;
+        let chunkCoordY: number;
+        let chunkCoordZ: number;
+        let motionX: number;
+        let motionY: number;
+        let motionZ: number;
+        let yaw: number;
+        let pitch: number;
+        let isInWeb: boolean;
+        let isCollided: boolean;
+        let isCollidedVertically: boolean;
+        let isCollidedHorizontally: boolean;
+        let onGround: boolean;
+        let dimension: number;
+        let id: number;
+        let fallDistance: number;
+        let noClip: boolean;
+        let stepHeight: number;
+        let isDead: boolean;
+        let inPortal: boolean;
+        let inWater: boolean;
+        let isAirBorne: boolean;
+        let ticksExisted: number;
+        let invulnerable: boolean;
+        let isImmuneToFire: boolean;
+        let isOutsideBorder: boolean;
+        let entityCollisionReduction: number;
+        let isSwingInProgress: boolean;
+        let arrowHitTimer: number;
+        let hurtTime: number;
+        let maxHurtTime: number;
+        let swingProgressInt: number;
+        let dead: boolean;
+        let isJumping: boolean;
+        function jump(): void;
+        function kill(): void;
+        namespace inventory {
+            let currentItem: number;
+            let inventoryChanged: boolean;
+            let mainInventory: any[];
+            let armorInventory: any[];
+        }
+        namespace capabilities {
+            let disableDamage: boolean;
+            let isFlying: boolean;
+            let allowFlying: boolean;
+            let isCreativeMode: boolean;
+            let allowEdit: boolean;
+            let flySpeed: number;
+            let walkSpeed: number;
+            function getFlySpeed(): number;
+            function getWalkSpeed(): number;
+            function setFlySpeed(json: any): void;
+            function setPlayerWalkSpeed(json: any): void;
+        }
+        let cameraYaw: number;
+        let chasingPosX: number;
+        let chasingPosY: number;
+        let chasingPosZ: number;
+        let experience: number;
+        let experienceLevel: number;
+        let experienceTotal: number;
+    }
+
+    /**for getting the scaled screen resolution. */
+    namespace ScaledResolution{
+        function getScaledWidth(): number
+        function getScaledHeight(): number
+        function getScaledWidth_double(): number
+        function getScaledHeight_double(): number
+        function getScaleFactor(): any //idk
+    }
+
+    namespace logger{
+        function loginfo(json: any)
+        function logerror(json: any)
+        function logdebug(json: any)
+        function logwarn(json: any)
+        function logfatal(json: any)
+        function logtrace(json: any)
+    }
+
+    namespace platform{
+        // TODO: add methods
+    }
+
+    // TODO: add other globals and more comments
+
+    /** 
+    This is the Minecraft instance exposed to JavaScript. It has no wrapping, and so many properties will be illegible. To use it, I would recommend editing the build.gradle in the workspace to set minifying: false; [Auto]
+    */
+    let mcinstance: object
+    /** The version of the EaglerForge.*/
+    let version: string;
+    /**The brand of the Eaglercraft client, taken from ClientBrandRetriever.java */
+    let clientBrand: string;
+    /**This method is used to add event listeners to the event name specified. */
+    function addEventListener(name: string, callback: any): void;
+    /**This method is used to remove event listeners to the event name specified. */
+    function removeEventListener(name: string, func: any, slow: any): void;
+    /**This method is used to tell `ModAPI` that a global needs to be generated. */
+    function require(component: string): void;
+    /**Force triggers a Mod API update. */
+    function update(): void;
+    /**Triggers a left click ingame. */
+    function clickMouse(): void;
+    /**Triggers a right click ingame. */
+    function rightClickMouse(): void;
+    /**Displays client-side message to user's ingame chat gui. how to use: `ModAPI.displayToChat({msg: "example"})` */
+    function displayToChat(json: any): void;
+    /**uwuifys your string...  how to use: `ModAPI.uwuify({string: "example"})` output: "exwmpwe"*/
+    function uwuify(json: any): string;
+    /**returns the current fps */
+    function getFPS(): number
+    /**returns the current screen as a string */
+    function currentscreen(): string
+    function getdisplayHeight(): number
+    function getdisplayWidth(): number
+    function getFONT_HEIGHT(): number
+    /**draws your string to screen and needs to be ran when the `drawhud` event is called. the color parameter needs be hex but # is replaced with 0x */
+    function drawStringWithShadow(json: any): void
+    /**draws your string to screen WITHOUT THE SHADOW and needs to be ran when the `drawhud` event is called. the color parameter needs be hex but # is replaced with 0x */
+    function drawString(json: any): void
+    /**draws a rect to screen and needs to be ran when the `drawhud` event is called. the color parameter needs be hex but # is replaced with 0x */
+    function drawrect(json: any):void
 }
 
-interface emptygui {
-    // No documentations yet.
-    CloseGUI() : void;
-    // No documentations yet.
-    isInitialized() : Number;
-    // No documentations yet.
-    DisplayGUI: ({drawdefaultbg : boolean});
-}
-export let ModAPI: ModAPI;
 
 // vexdev was here...
+// radmanplays was here too.
