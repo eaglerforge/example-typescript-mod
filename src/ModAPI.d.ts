@@ -394,7 +394,7 @@ declare namespace ModAPI {
     /**returns the current fps */
     function getFPS(): number
     /**returns the current screen as a string */
-    function currentscreen(): string
+    function currentScreen(): string
     /**returns screen height */
     function getdisplayHeight(): number
     /**returns screen width */
