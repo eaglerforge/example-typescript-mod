@@ -1,0 +1,1 @@
+export let mc = ModAPI.mcinstance
