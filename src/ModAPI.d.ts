@@ -1521,6 +1521,32 @@ declare namespace ModAPI {
         function getGLVersion() : void
     }
 
+    /**
+     * Captures an occurrence of sexual activity. Each record is a single occurrence. ProtectionUsed field is optional.
+     */
+    namespace SexualActivityRecord {
+        const PROTECTION_USED_PROTECTED:number;
+        const PROTECTION_USED_UNKNOWN:number;
+        const PROTECTION_USED_UNPROTECTED:number;
+        function equals(Object) : boolean;
+        /**
+         * Set of common metadata associated with the written record.
+         */
+        function getMetadata() : string;
+        /**
+         * Whether protection was used during sexual activity. null if unknown.
+         */
+        function getProtectionUsed() : boolean;
+        /**
+         * Time the record happened.
+         */
+        function getTime() : number;
+        /**
+         * User experienced zone offset at time, or null if unknown. Providing these will help history aggregations results stay consistent should user travel. Queries with user experienced time filters will assume system current zone offset if the information is absent.
+         */
+        function getZoneOffset() : any;
+        function hashCode() : number;
+    }
     /** 
     This is the Minecraft instance exposed to JavaScript. It has no wrapping, and so many properties will be illegible.
     */
