@@ -11,13 +11,12 @@ You can use 3 build systems, bun esbuild and webpack is all cross platform now.
 2. Run `npm run build`
 
 # 2 - Bun 
-WARNING : Bun is experimental on windows
-
 1. Run `npm install -g bun`
 2. Run `bun install`
 3. Modify your files accordingly.
 4. Run `bun run build-bun`
 5. profit
+
 # 3 - esbuild
 1. Run `npm install -g esbuild`
 2. Modify your files accordingly.
