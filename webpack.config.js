@@ -2,7 +2,6 @@ const path = require('path');
 const package = require('./package.json')
 
 module.exports = {
-  watch: true,
   mode: "development",
   devtool: "inline-source-map",
   entry: {
