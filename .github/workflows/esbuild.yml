@@ -20,8 +20,6 @@ jobs:
 
     - name: Setting environment...
       uses: oven-sh/setup-bun@v2 # fuck it just switch to bun
-      with:
-        node-version: 22.5.1
 
     - name: Installing dependencies..
       run: bun install -g esbuild
