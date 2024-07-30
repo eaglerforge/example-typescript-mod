@@ -2,6 +2,7 @@ const path = require('path');
 const package = require('./package.json')
 
 module.exports = {
+  watch: true,
   mode: "development",
   devtool: "inline-source-map",
   entry: {
@@ -27,5 +28,9 @@ module.exports = {
       { test: /\.css$/, use: 'css-loader' }
         
     ]
-  }
+  },
+  optimization: {
+    mangleExports: 'deterministic',
+    minimize: true,
+  },
 };
