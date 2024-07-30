@@ -23,4 +23,3 @@ You can use 3 build systems, bun esbuild and webpack is all cross platform now.
 3. Run `npn run build-es`
 4. profit ( again )
 ## Notes
-- All build tasks will generate source maps and only the 2 and 3 build task will watch your files.
