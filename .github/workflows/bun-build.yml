@@ -1,4 +1,4 @@
-name: BunJS with Webpack
+name: BunJS with Bun Build
 permissions:
   contents: write
 
@@ -20,7 +20,6 @@ jobs:
       
     - name: Build
       run: |
-        bun install -g webpack-cli
-        webpack --config webpack.config.js
+        bun build --bundle ./src/Main.ts --outdir=out/ --outfile=out/plugin.js --watch --target browser --entry-naming EaglerForge-[hash].js
     - name: Write changes to repository
       uses: stefanzweifel/git-auto-commit-action@v4
