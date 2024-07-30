@@ -19,14 +19,14 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Setting environment...
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: 21
+        node-version: 22.5.1
 
     - name: Installing dependencies..
       run: npm install -g esbuild
 
-    - name: Building project..
+    - name: Building project.. ( esbuild )
       run: esbuild --bundle src/Main.ts --outfile=out/plugin.js --sourcemap=inline # custom
       env:
         NODE_ENV: production
