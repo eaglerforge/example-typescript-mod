@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
 /*!*********************!*\
   !*** ./src/Main.ts ***!
   \*********************/
@@ -9,4 +8,4 @@ ModAPI.uwuify({ string: "and even uwuify a string?" });
 
 /******/ })()
 ;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXhhbXBsZS10eXBlc2NyaXB0LW1vZC5qcyIsIm1hcHBpbmdzIjoiOzs7OztBQUFBLHVCQUF1QixvQ0FBb0M7QUFDM0Qsd0JBQXdCLDJDQUEyQztBQUNuRSxnQkFBZ0IscUNBQXFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vZXhhbXBsZS10eXBlc2NyaXB0LW1vZC8uL3NyYy9NYWluLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIk1vZEFQSS5kaXNwbGF5VG9DaGF0KHsgbXNnOiBcImhlbGxvLCB0aGlzIGlzIGVhZ2xlcmZvcmdlIVwiIH0pO1xuTW9kQVBJLmxvZ2dlci5sb2dpbmZvKHsgc3RyaW5nOiBcInlvdSBjYW4gbG9nIGEgc3RyaW5nIHRvIGNvbnNvbGVcIiB9KTtcbk1vZEFQSS51d3VpZnkoeyBzdHJpbmc6IFwiYW5kIGV2ZW4gdXd1aWZ5IGEgc3RyaW5nP1wiIH0pO1xuIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXhhbXBsZS10eXBlc2NyaXB0LW1vZC5qcyIsIm1hcHBpbmdzIjoiOzs7O0FBQUEsdUJBQXVCLG9DQUFvQztBQUMzRCx3QkFBd0IsMkNBQTJDO0FBQ25FLGdCQUFnQixxQ0FBcUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9leGFtcGxlLXR5cGVzY3JpcHQtbW9kLy4vc3JjL01haW4udHMiXSwic291cmNlc0NvbnRlbnQiOlsiTW9kQVBJLmRpc3BsYXlUb0NoYXQoeyBtc2c6IFwiaGVsbG8sIHRoaXMgaXMgZWFnbGVyZm9yZ2UhXCIgfSk7XG5Nb2RBUEkubG9nZ2VyLmxvZ2luZm8oeyBzdHJpbmc6IFwieW91IGNhbiBsb2cgYSBzdHJpbmcgdG8gY29uc29sZVwiIH0pO1xuTW9kQVBJLnV3dWlmeSh7IHN0cmluZzogXCJhbmQgZXZlbiB1d3VpZnkgYSBzdHJpbmc/XCIgfSk7XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=
