@@ -1,4 +1,4 @@
-name: NodeJS with esbuild
+name: BunJS with esbuild
 
 on:
   push:
@@ -19,12 +19,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Setting environment...
-      uses: actions/setup-node@v4
+      uses: oven-sh/setup-bun@v2 # fuck it just switch to bun
       with:
         node-version: 22.5.1
 
     - name: Installing dependencies..
-      run: npm install -g esbuild
+      run: bun install -g esbuild
 
     - name: Building project.. ( esbuild )
       run: esbuild --bundle src/Main.ts --outfile=out/plugin.js --sourcemap=inline # custom
