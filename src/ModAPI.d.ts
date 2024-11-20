@@ -1340,186 +1340,389 @@ declare namespace ModAPI {
         let experienceTotal: number;
     }
 
-    /**Represents the network handler. Has many built-in functions to easily send packets to the server.. */
+    /**Represents the network handler.*/
     namespace network{
-        let doneLoadingTerrain: Boolean
-        let currentServerMaxPlayers: number
-        function sendPacketAnimation(): void;
-        /**`action` can be one of: `START_SNEAKING`, `STOP_SNEAKING`, `STOP_SLEEPING`, `START_SPRINTING`, `STOP_SPRINTING`, `RIDING_JUMP` or `OPEN_INVENTORY` */
-        function sendPacketEntityAction(json: any): void;
-        function sendPacketInput(json: any): void;
-        function sendPacketCloseWindow(json: any): void;
-        function sendPacketClickWindow(json: any): void;
-        function sendPacketConfirmTransaction(json: any): void;
-        function sendPacketKeepAlive(json: any): void;
-        function sendPacketChatMessage(json: any): void;
-        /**`action` can be one of: `INTERACT`, `ATTACK` or `INTERACT_AT` */
-        function sendPacketUseEntity(json: any): void;
-        function sendPacketPlayer(json: any): void;
-        function sendPacketPlayerPosition(json: any): void;
-        function sendPacketPlayerLook(json: any): void;
-        function sendPacketPlayerPosLook(json: any): void;
-        /**`action` can be one of: `START_DESTROY_BLOCK`, `ABORT_DESTROY_BLOCK`, `STOP_DESTROY_BLOCK`, `DROP_ALL_ITEMS`, `DROP_ITEM` or `RELEASE_USE_ITEM`
-         * `facing` can be one of: `UP`, `DOWN`, `NORTH`, `SOUTH`, `EAST` or `WEST`
-         */
-        function sendPacketPlayerDigging(json: any): void;
-        function sendPacketPlayerBlockPlacement(json: any): void;
-        function sendPacketHeldItemChange(json: any): void;
-        function sendPacketCreativeInventoryAction(json: any): void;
-        function sendPacketEnchantItem(json: any): void;
-        function sendPacketUpdateSign(json: any): void;
-        function sendPacketPlayerAbilities(json: any): void;
-        function sendPacketTabComplete(json: any): void;
-        /**`chatVisibility` can be one of: `FULL`, `SYSTEM` or `HIDDEN` */
-        function sendPacketClientSettings(json: any): void;
-        /**`status` can be one of: `PERFORM_RESPAWN`, `REQUEST_STATS` or `OPEN_INVENTORY_ACHIEVEMENT` */
-        function sendPacketClientStatus(json: any): void;
-        function sendPacketSpectate(json: any): void;
-        /**`status` can be one of: `SUCCESSFULLY_LOADED`, `DECLINED`, `FAILED_DOWNLOAD` or `ACCEPTED` */
-        function sendPacketResourcePackStatus(json: any): void;
+        let avRandomizer: any;
+        let cachedServerInfoData: any;
+        let capeCache: any;
+        let clientWorldController: any;
+        let currentFNAWSkinAllowedState: number;
+        let currentFNAWSkinForcedState: number;
+        let currentServerMaxPlayers: number;
+        let doneLoadingTerrain: number;
+        let eaglerMessageController: any;
+        let field_147308_k: number;
+        let gameController: any;
+        let guiScreenServer: any;
+        let hasRequestedServerInfo: number;
+        let id: number;
+        let isIntegratedServer: number;
+        let monitor: any;
+        let netManager0: any;
+        let notifManager: any;
+        let playerInfoMap: any;
+        let profile3: any;
+        let skinCache: any;
+        
+        let addToSendQueue: (...args: any[]) => void;
+        let getEaglerMessageController: (...args: any[]) => void;
+        let getEaglerMessageProtocol: (...args: any[]) => void;
+        let getNetworkManager: (...args: any[]) => void;
+        let getPlayerInfo0: (...args: any[]) => void;
+        let getPlayerInfoMap: (...args: any[]) => void;
+        let handleChangeGameState: (...args: any[]) => void;
+        let handleSpawnObject: (...args: any[]) => void;
+        let onDisconnect: (p1: any) => void;
+        let sendEaglerMessage: (...args: any[]) => void;
+        
+        let constructor: new () => any;
+        
 
     }
 
     /**Represents the game's settings. */
     namespace settings{
-        let mouseSensitivity: number;
-        let invertMouse: boolean;
-        let renderDistanceChunks: number;
-        let viewBobbing: boolean;
-        let anaglyph: boolean;
-        let fboEnable: boolean;
-        let limitFramerate: number;
-        let clouds: number;
-        let fancyGraphics: boolean;
+        let advancedItemTooltips: number;
+        let allowBlockAlternatives: number;
         let ambientOcclusion: number;
-        /**Can be one of: `FULL`, `SYSTEM`, or `HIDDEN` */
-        let chatVisibility: string;
-        let chatColours: boolean;
-        let chatLinks: boolean;
-        let chatLinksPrompt: boolean;
-        let chatOpacity: number;
-        let enableVsync: boolean;
-        let snooperEnabled: boolean;
-        let allowBlockAlternatives: boolean;
-        let reducedDebugInfo: boolean;
-        let hideServerAddress: boolean;
-        let pauseOnLostFocus: boolean;
-        let touchscreen: boolean;
-        let overrideWidth: number;
-        let overrideHeight: number;
-        let heldItemTooltips: boolean;
-        let chatScale: number;
-        let chatWidth: number;
-        let chatHeightUnfocused: number;
+        let anaglyph: number;
+        let chatColours: number;
         let chatHeightFocused: number;
-        let streamBytesPerPixel: number;
-        let streamMicVolume: number;
-        let streamGameVolume: number;
-        let streamKbps: number;
-        let streamFps: number;
+        let chatHeightUnfocused: number;
+        let chatLinks: number;
+        let chatLinksPrompt: number;
+        let chatOpacity: number;
+        let chatScale: number;
+        let chatVisibility: any;
+        let chatWidth: number;
+        let chunkFix: number;
+        let clouds: number;
+        let debugCamEnable: number;
+        let deferredShaderConf: any;
+        let difficulty0: any;
+        let enableDynamicLights: number;
+        let enableFNAWSkins: number;
+        let enableProfanityFilter: number;
+        let enableUpdateSvc: number;
+        let enableVsync: number;
+        let fancyGraphics: number;
+        let fboEnable: number;
+        let field_181150_U: number;
+        let field_181151_V: number;
+        let field_181657_aC: number;
+        let field_183018_l: any;
+        let fog: number;
+        let forceUnicodeFont: number;
         let fovSetting: number;
-        let gammaSetting: number;
-        let saturation: number;
-        let streamChatEnabled: number;
-        let streamChatUserFilter: number;
-        let streamMicToggleBehavior: number;
-        let guiScale: number;
         let fxaa: number;
-        let particleSetting: number;
-        let streamCompression: number;
-        let thirdPersonView: number;
+        let gammaSetting: number;
+        let guiScale: number;
+        let hasCreatedDemoWorld: number;
+        let hasHiddenPhishWarning: number;
+        let hasShownProfanityFilter: number;
+        let heldItemTooltips: number;
+        let hideDefaultUsernameWarning: number;
+        let hideGUI: number;
+        let hideJoinCode: number;
+        let hideServerAddress: number;
+        let hideVideoSettingsWarning: number;
+        let hud24h: number;
+        let hudCoords: number;
+        let hudFps: number;
+        let hudPlayer: number;
+        let hudStats: number;
+        let hudWorld: number;
+        let id: number;
+        let invertMouse: number;
+        let keyBindAttack: any;
+        let keyBindBack: any;
+        let keyBindChat: any;
+        let keyBindClose: any;
+        let keyBindCommand: any;
+        let keyBindDrop: any;
+        let keyBindForward: any;
+        let keyBindFunction: any;
+        let keyBindInventory: any;
+        let keyBindJump: any;
+        let keyBindLeft: any;
+        let keyBindPickBlock: any;
+        let keyBindPlayerList: any;
+        let keyBindRight: any;
+        let keyBindScreenshot: any;
+        let keyBindSmoothCamera: any;
+        let keyBindSneak: any;
+        let keyBindSprint: any;
+        let keyBindTogglePerspective: any;
+        let keyBindUseItem: any;
+        let keyBindZoomCamera: any;
+        let keyBindings: any;
+        let keyBindsHotbar: any;
+        let language: any;
+        let lastServer: any;
+        let limitFramerate: number;
+        let mapSoundLevels: any;
+        let mc3: any;
         let mipmapLevels: number;
-        let forceUnicodeFont: boolean;
-        let hudFps: boolean;
-        let hudCoords: boolean;
-        let hudPlayer: boolean;
-        let hudWorld: boolean;
-        let hudStats: boolean;
-        let hud24h: boolean;
-        let chunkFix: boolean;
-        let fog: boolean;
-        let streamSendMetadata: boolean;
-        let hideGUI: boolean;
-        let smoothCamera: boolean;
-        let debugCamEnable: boolean;
-        let showDebugInfo: boolean;
-        let showDebugProfilerChart: boolean;
-        let showInventoryAchievementHint: boolean;
-        /**Can be one of `PEACEFUL`, `EASY`, `NORMAL` or `HARD` */
-        let difficulty: string;
-        let lastServer: string;
-        let language: string;
-        let streamPreferredServer: string;
+        let monitor: any;
+        let mouseSensitivity: number;
+        let overrideHeight: number;
+        let overrideWidth: number;
+        let particleSetting: number;
+        let pauseOnLostFocus: number;
+        let reducedDebugInfo0: number;
+        let relayTimeout: number;
+        let renderDistanceChunks: number;
+        let resourcePacks: any;
+        let saturation: number;
+        let screenRecordAudioBitrate: number;
+        let screenRecordCodec: any;
+        let screenRecordFPS: number;
+        let screenRecordGameVolume: number;
+        let screenRecordMicVolume: number;
+        let screenRecordResolution: number;
+        let screenRecordVideoBitrate: number;
+        let setModelParts: any;
+        let shaders: number;
+        let shadersAODisable: number;
+        let showDebugInfo: number;
+        let showDebugProfilerChart: number;
+        let showInventoryAchievementHint: number;
+        let smoothCamera: number;
+        let snooperEnabled: number;
+        let thirdPersonView: number;
+        let touchControlOpacity: number;
+        let touchscreen: number;
+        let viewBobbing: number;
+        let voiceListenRadius: number;
+        let voiceListenVolume: number;
+        let voicePTTKey: number;
+        let voiceSpeakVolume: number;
+        let checkBadVideoSettings: (...args: any[]) => void;
+        let func_181147_e: (...args: any[]) => void;
+        let getKeyBinding: (...args: any[]) => void;
+        let getModelParts: (...args: any[]) => void;
+        let getOptionFloatValue: (...args: any[]) => void;
+        let getOptionOrdinalValue: (...args: any[]) => void;
+        let getSoundLevel: (...args: any[]) => void;
+        let loadOptions: (...args: any[]) => void;
+        let loadOptions0: (...args: any[]) => void;
+        let parseFloat: (...args: any[]) => void;
+        let saveOptions: (...args: any[]) => void;
+        let sendSettingsToServer: (...args: any[]) => void;
+        let setModelPartEnabled: (...args: any[]) => void;
+        let setOptionFloatValue: (...args: any[]) => void;
+        let setOptionKeyBinding: (...args: any[]) => void;
+        let setOptionValue: (...args: any[]) => void;
+        let setSoundLevel: (...args: any[]) => void;
+        let toJSONArray: (...args: any[]) => void;
+        let writeOptions: (...args: any[]) => void;
 
-        /**Represents a in-game keybind. */
-        /*
-        namespace keyBindings{
-            let keyCode: number;
-            let pressTime: number;
-            let pressed: boolean;
-            let keyDescription: string;
-            let keyCategory: string;
-            function isKeyDown(): boolean;
-            function getKeyCategory(): string;
-            function isPressed(): boolean;
-            function unpressKey(): void;
-            function getKeyDescription(): string;
-            function getKeyCodeDefault(): number;
-            function getKeyCode(): number;
-        }
-        */
-
-       //commented out bc of it being ModAPI.settings.(keybind).(keyBindings method)
+        let constructor: new () => any;
     }
 
-    /**for getting the scaled screen resolution. */
-    namespace ScaledResolution{
-        function getScaledWidth(): number
-        function getScaledHeight(): number
-        function getScaledWidth_double(): number
-        function getScaledHeight_double(): number
-        function getScaleFactor(): any //idk
+    namespace blocks{
+        let acacia_door: any;
+        let acacia_fence: any;
+        let acacia_fence_gate: any;
+        let acacia_stairs: any;
+        let activator_rail: any;
+        let air: any;
+        let anvil: any;
+        let barrier: any;
+        let beacon: any;
+        let bed: any;
+        let bedrock: any;
+        let birch_door: any;
+        let birch_fence: any;
+        let birch_fence_gate: any;
+        let birch_stairs: any;
+        let bookshelf: any;
+        let brewing_stand: any;
+        let brick_block: any;
+        let brick_stairs: any;
+        let brown_mushroom: any;
+        let brown_mushroom_block: any;
+        let cactus: any;
+        let cake: any;
+        let carpet: any;
+        let carrots: any;
+        let cauldron: any;
+        let chest: any;
+        let clay: any;
+        let coal_block: any;
+        let coal_ore: any;
+        let cobblestone: any;
+        let cobblestone_wall: any;
+        let cocoa: any;
+        let command_block: any;
+        let crafting_table: any;
+        let dark_oak_door: any;
+        let dark_oak_fence: any;
+        let dark_oak_fence_gate: any;
+        let dark_oak_stairs: any;
+        let daylight_detector: any;
+        let daylight_detector_inverted: any;
+        let deadbush: any;
+        let detector_rail: any;
+        let diamond_block: any;
+        let diamond_ore: any;
+        let dirt: any;
+        let dispenser: any;
+        let double_plant: any;
+        let double_stone_slab: any;
+        let double_stone_slab2: any;
+        let double_wooden_slab: any;
+        let dragon_egg: any;
+        let dropper: any;
+        let emerald_block: any;
+        let emerald_ore: any;
+        let enchanting_table: any;
+        let end_portal: any;
+        let end_portal_frame: any;
+        let end_stone: any;
+        let ender_chest: any;
+        let farmland: any;
+        let fire: any;
+        let flower_pot: any;
+        let flowing_lava: any;
+        let flowing_water: any;
+        let furnace: any;
+        let glass: any;
+        let glass_pane: any;
+        let glowstone: any;
+        let gold_block: any;
+        let gold_ore: any;
+        let golden_rail: any;
+        let grass: any;
+        let gravel: any;
+        let hardened_clay: any;
+        let hay_block: any;
+        let heavy_weighted_pressure_plate: any;
+        let hopper: any;
+        let ice: any;
+        let iron_bars: any;
+        let iron_block: any;
+        let iron_door: any;
+        let iron_ore: any;
+        let iron_trapdoor: any;
+        let jukebox: any;
+        let jungle_door: any;
+        let jungle_fence: any;
+        let jungle_fence_gate: any;
+        let jungle_stairs: any;
+        let ladder: any;
+        let lapis_block: any;
+        let lapis_ore: any;
+        let lava: any;
+        let leaves: any;
+        let leaves2: any;
+        let lever: any;
+        let light_weighted_pressure_plate: any;
+        let lit_furnace: any;
+        let lit_pumpkin: any;
+        let lit_redstone_lamp: any;
+        let lit_redstone_ore: any;
+        let log: any;
+        let log2: any;
+        let melon_block: any;
+        let melon_stem: any;
+        let mob_spawner: any;
+        let monster_egg: any;
+        let mossy_cobblestone: any;
+        let mycelium: any;
+        let nether_brick: any;
+        let nether_brick_fence: any;
+        let nether_brick_stairs: any;
+        let nether_wart: any;
+        let netherrack: any;
+        let noteblock: any;
+        let oak_door: any;
+        let oak_fence: any;
+        let oak_fence_gate: any;
+        let oak_stairs: any;
+        let obsidian: any;
+        let packed_ice: any;
+        let piston: any;
+        let piston_extension: any;
+        let piston_head: any;
+        let planks: any;
+        let portal: any;
+        let potatoes: any;
+        let powered_comparator: any;
+        let powered_repeater: any;
+        let prismarine: any;
+        let pumpkin: any;
+        let pumpkin_stem: any;
+        let quartz_block: any;
+        let quartz_ore: any;
+        let quartz_stairs: any;
+        let rail: any;
+        let red_flower: any;
+        let red_mushroom: any;
+        let red_mushroom_block: any;
+        let red_sandstone: any;
+        let red_sandstone_stairs: any;
+        let redstone_block: any;
+        let redstone_lamp: any;
+        let redstone_ore: any;
+        let redstone_torch: any;
+        let redstone_wire: any;
+        let reeds: any;
+        let sand: any;
+        let sandstone: any;
+        let sandstone_stairs: any;
+        let sapling: any;
+        let sea_lantern: any;
+        let skull: any;
+        let slime_block: any;
+        let snow: any;
+        let snow_layer: any;
+        let soul_sand: any;
+        let sponge: any;
+        let spruce_door: any;
+        let spruce_fence: any;
+        let spruce_fence_gate: any;
+        let spruce_stairs: any;
+        let stained_glass: any;
+        let stained_glass_pane: any;
+        let stained_hardened_clay: any;
+        let standing_banner: any;
+        let standing_sign: any;
+        let sticky_piston: any;
+        let stone: any;
+        let stone_brick_stairs: any;
+        let stone_button: any;
+        let stone_pressure_plate: any;
+        let stone_slab: any;
+        let stone_slab2: any;
+        let stone_stairs: any;
+        let stonebrick: any;
+        let tallgrass: any;
+        let tnt: any;
+        let torch: any;
+        let trapdoor: any;
+        let trapped_chest: any;
+        let tripwire: any;
+        let tripwire_hook: any;
+        let unlit_redstone_torch: any;
+        let unpowered_comparator: any;
+        let unpowered_repeater: any;
+        let vine: any;
+        let wall_banner: any;
+        let wall_sign: any;
+        let water: any;
+        let waterlily: any;
+        let web: any;
+        let wheat: any;
+        let wooden_button: any;
+        let wooden_pressure_plate: any;
+        let wooden_slab: any;
+        let wool: any;
+        let yellow_flower: any;
+
     }
 
-    /**Allows you to access GlStateManager */
-    namespace GlStateManager{
-        let stateDepthMask : Boolean
-        let stateCull : Boolean
-        let stateFog : Boolean
-        let stateGlobalBlend : Boolean
-        let stateLighting : Boolean
-        function pushMatrix(): void;
-        function popMatrix(): void;
-        function recompileShaders(): void;
-        function scale(json: any): void;
-        function translate(json: any): void;
-        function color(json: any): void;
-        function rotate(json: any): void;
-        function matrixMode(json: any): void;        
-    }
 
-    namespace logger{
-        function loginfo(json: any)
-        function logerror(json: any)
-        function logdebug(json: any)
-        function logwarn(json: any)
-        function logfatal(json: any)
-        function logtrace(json: any)
-    }
-
-    namespace platform{
-        function isOfflineDownload() : boolean
-        function freeMemory() : number
-        function maxMemory() : number
-        function totalMemory() : number
-        function openLink(json: any)
-        function getClipboard() : string
-        function recSupported() : boolean
-        function toggleRec() : void
-        function getUserAgentString() : void
-        function getGLRenderer() : void
-        function getGLVersion() : void
-    }
 
     /** 
     This is the Minecraft instance exposed to JavaScript. It has no wrapping, and so many properties will be illegible.
@@ -1533,12 +1736,25 @@ declare namespace ModAPI {
         let $currentServerData : any[]
     }
 
+    namespace array{
+        function boolean(size)
+        function byte(size)
+        function char(size)
+        function double(size)
+        function float(size)
+        function int(size)
+        function object(jclass, size)
+        function short(size)
+    }
+
     // TODO: add other globals and more comments
 
     /** The version of the EaglerForge.*/
     let version: string;
     /**The brand of the Eaglercraft client, taken from ClientBrandRetriever.java */
     let clientBrand: string;
+    let GNU: string;
+    let credits: Array<any>;
     /**This method is used to add event listeners to the event name specified. */
     function addEventListener(name: string, callback: any): void;
     /**This method is used to remove event listeners to the event name specified. */
