@@ -25,7 +25,7 @@ jobs:
       run: bun install -g esbuild
 
     - name: Building project.. ( esbuild )
-      run: esbuild --bundle src/Main.ts --outfile=out/plugin.js --sourcemap=inline # custom
+      run: esbuild --bundle src/main.ts --outfile=out/plugin.js --sourcemap=inline # custom
       env:
         NODE_ENV: production
 
