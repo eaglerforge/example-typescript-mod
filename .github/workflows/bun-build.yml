@@ -20,6 +20,6 @@ jobs:
       
     - name: Build
       run: |
-        bun build --bundle ./src/Main.ts --outdir=out/ --outfile=out/plugin.js --target browser --entry-naming EaglerForge-[hash].js
+        bun build --bundle ./src/main.ts --outdir=out/ --outfile=out/plugin.js --target browser --entry-naming EaglerForge-[hash].js
     - name: Write changes to repository
       uses: stefanzweifel/git-auto-commit-action@v4
