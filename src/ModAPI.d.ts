@@ -1,1796 +1,1116 @@
+/*
+    Modern ModAPI Type Definitions
+    Definitions written by: Block_2222(everything else), BendieGames(util), aleixdev(reflect)
+    
+    EaglerForge/ModAPI by: ZXMushroom63, radmanplays, Leah Anderson(otterdev)
+*/
+
 /**
- * ===================================
- *         ModAPI Definitions
- * ===================================
+ * A method used in Reflect Class
+ * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
  */
+declare interface ReflectMethod {
+    methodName: string;
+    methodNameShord: string;
+    method: (...args: any[]) => any;
+}
 
 /**
- * For more info and documentations, visit:
- * https://eaglerforge.github.io/
+ * A Class made by using ModAPI.reflect
+ * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
  */
+declare interface ReflectClass {
+    binaryName: string | null;
+    class: any | null;
+    compiledName: string;
+    constructors: Function[];
+    hasMeta: boolean;
+    id: string | null;
+    name: string;
+    methods: Map<string, ReflectMethod>;
+    staticMethods: Record<string, ReflectMethod>;
+    staticVariableNames: string[];
+    staticVariables: Record<string, any>;
+    superclass?: ReflectClass;
 
+    instanceOf(obj: any): boolean;
+    getConstructorByArgs(...args: string[]): Function;
+}
 
 /**
-The Mod API consists of a global JavaScript object on the window, called, very simply, ModAPI.
+ * The EaglerForge ModAPI is housed in a global JavaScript object stored on globalThis, called ModAPI or PluginAPI. (both are identical)
+ * 
+ * It is recommended that you have an Eaglercraft workspace open while you're modding.
+ * Alternatively, you can use a vanilla Minecraft JavaDoc like the one below
+ * @see {@link https://nurmarvin.github.io/Minecraft-1.8-JavaDocs/overview-summary.html} Vanilla Minecraft JavaDoc
+ * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
  */
 declare namespace ModAPI {
-    namespace events {
-        let types: string[];
-        namespace listeners {
-            let event: any[];
-        }
-        function newEvent(name: string): void;
-        function callEvent(name: string, data: any): void;
+    /**
+     * GNU lmao
+     */
+    let GNU: string;
+    
+    /**
+     * Lets you easily add credits to Eaglercraft’s credits.txt
+     * @example
+     * ModAPI.addCredit("My Cool Mod", "Username", " - Coded the mod\n - Wrote some credits")
+     * @param {string} category Mod/Project's Name
+     * @param {string} contributor Name of the contributor
+     * @param {string} contents Their contributions to the project
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     * @see {@link https://github.com/eaglerforge}
+     */
+    function addCredit(category: string, contributor: string, contents: string): void;
+
+    /**
+     * Used to register an event handler.
+     * @example
+     * function myHandler(event) {
+     *     console.log(event);
+     * }
+     * ModAPI.addEventListener("update", myHandler);
+     * @param {string} eventName name of the event
+     * @param {Function} callback callback function with optional object paramenter
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/events.html} Events Documentation
+    */
+    function addEventListener(eventName: string, callback: Function): void;
+
+    /**
+     * This module is used to interact and create arrays easily.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+     */
+    namespace array {
+        /**
+         * Creates a Java array of a class with the specified size.
+         * @param {Class} jclass Java Class
+         * @param {number} size
+         * @returns {JavaArray<object>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function object(jclass: any, size: number): any;
+        /**
+         * Converts a JavaScript array of a class to a Java array of a class.
+         * @param {Class} jclass Java Class
+         * @param {Array<object>} jsarray
+         * @returns {JavaArray<object>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function object(jclass: any, jsarray: Array<object>): any;
+
+        /** 
+         * Creates a boolean array with the specified size.
+         * @param {number} size
+         * @returns {JavaArray<boolean>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+        */
+        function boolean(size: number): any;
+        /**
+         * Takes a JavaScript array of booleans (true/false) and converts it into a Java array.
+         * @param {Array<boolean>} jsarray
+         * @returns {JavaArray<boolean>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function boolean(jsarray: Array<object>): any;
+
+        /**
+         * Creates a byte array with the specified size.
+         * @param {number} size 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function byte(size: number): any;
+        /**
+         * Takes a JavaScript array of numbers and converts it into a Java byte array.
+         * @param {Array<number>} jsarray 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function byte(jsarray: Array<number>): any;
+
+        /**
+         * Creates a char array with the specified size.
+         * @param {number} size 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function char(size: number): any;
+        /**
+         * Takes a JavaScript array of numbers and converts it into a Java char array.
+         * @param {Array<number>} jsarray 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function char(jsarray: Array<number>): any;
+
+        /**
+         * Creates a short array with the specified size.
+         * @param {number} size 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function short(size: number): any;
+        /**
+         * Takes a JavaScript array of numbers and converts it into a Java short array.
+         * @param {Array<number>} jsarray 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function short(jsarray: Array<number>): any;
+
+        /**
+         * Creates a int array with the specified size.
+         * @param {number} size 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function int(size: number): any;
+        /**
+         * Takes a JavaScript array of numbers and converts it into a Java int array.
+         * @param {Array<number>} jsarray 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function int(jsarray: Array<number>): any;
+
+        /**
+         * Creates a float array with the specified size.
+         * @param {number} size 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function float(size: number): any;
+        /**
+         * Takes a JavaScript array of numbers and converts it into a Java float array.
+         * @param {Array<number>} jsarray 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function float(jsarray: Array<number>): any;
+
+        /**
+         * Creates a double array with the specified size.
+         * @param {number} size
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function double(size: number): any;
+        /**
+         * Takes a JavaScript array of numbers and converts it into a Java double array.
+         * @param {Array<number>} jsarray 
+         * @returns {JavaArray<number>}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/array.html} Array Documentation
+         */
+        function double(jsarray: Array<number>): any;
     }
-    namespace globals {
-        function _initUpdate(): void;
+    /**
+     * This is a key-value dictionary of all of the blocks in the game. 
+     * 
+     * It is generated upon init from the static variables of the Blocks class.
+     * You can also regenerate this by calling ModAPI.util.bootstrap().
+     * 
+     * @example <caption>To access the block class for bedrock, you can use:</caption>
+     * ModAPI.blocks["bedrock"]
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let blocks: any;
+    
+    /**
+     * Triggers a left click ingame.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    function clickMouse(): void;
+
+    /**
+     * This is the dedicated server module, used for modding singleplayer in more powerful ways.
+     * This is used to push code for use in the dedicated server.
+     * Once the dedicated server worker has started, it is unuseable.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/dedicatedserver.html} Dedicated Server Documentation
+     */
+    namespace dedicatedServer {
+        /**
+         * Injects provided code into the dedicated server.
+         * Accepts both functions and strings. 
+         * @param {Function | string} code 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/dedicatedserver.html} Dedicated Server Documentation
+         */
+        function appendCode(code: Function | string): void;
+
+        /**
+         * Undocumented internals
+         */
+        let _data: Array<any> | any;
+
+        /**
+         * Undocumented internals
+         * 
+         * My first guess is that this tells you if the integrated server has started at least once.
+         * 
+         * Take the above with a grain of salt (Block_2222)
+         */
+        let _wasUsed: boolean | any;
     }
 
     /**
-    Represents the player.
+     * Displays client-side message to user’s ingame chat gui.
+     * @example
+     * ModAPI.displayToChat("Hello World.")
+     * @param {string} message 
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
      */
-    namespace player {
-        function isBurning(): boolean;
-        function isPushedByWater(): boolean;
-        function isEating(): boolean;
-        function isEntityAlive(): boolean;
-        function isEntityInsideOpaqueBlock(): boolean;
-        function isImmuneToExplosions(): boolean;
-        function isInLava(): boolean;
-        function isInWater(): boolean;
-        function isInvisible(): boolean;
-        function isPushedByWater(): boolean;
-        function isRiding(): boolean;
-        function isSilent(): boolean;
-        function isSneaking(): boolean;
-        function isSprinting(): boolean;
-        function isWet(): boolean;
-        function setBeenAttacked(): void;
-        function setDead(): void;
-        function setInWeb(): void;
-        function setOnFireFromLava(): void;
-        function getUUID(): string;
-        function getAir(): number;
-        function getAlwaysRenderNameTag(): boolean;
-        function getAlwaysRenderNameTagForRender(): boolean;
-        function getBrightness(json: any): number;
-        function getBrightnessForRender(json: any): number;
-        function reload(): void;
-        function getCollisionBorderSize(): number;
-        function isBurning(): boolean 
-        function isPushedByWater(): boolean 
-        function isEating(): boolean 
-        function isEntityAlive(): boolean 
-        function isEntityInsideOpaqueBlock(): boolean 
-        function isImmuneToExplosions(): boolean 
-        function isInLava(): boolean 
-        function isInRangeToRender3d(json: any): boolean 
-        function isInRangeToRenderDist(json: any): boolean 
-        function isInWater(): boolean 
-        function isInvisible(): boolean 
-        function isPushedByWater(): boolean 
-        function isRiding(): boolean 
-        function isSilent(): boolean 
-        function isSneaking(): boolean 
-        function isSprinting(): boolean 
-        function isWet(): boolean 
-        function setAir(json: any): void 
-        function setAlwaysRenderNameTag(json: any): void 
-        function setAngles(json: any): void 
-        function setBeenAttacked(): void 
-        function setCustomNameTag(json: any): void 
-        function setDead(): void 
-        function setEating(json: any): void 
-        function setEntityId(json: any): void 
-        function setFire(json: any): void 
-        function setFlag(json: any): void 
-        function setInWeb(): void 
-        function setInvisible(json: any): void 
-        function setLocationAndAngles(json: any): void 
-        function setOnFireFromLava(): void 
-        function setOutsideBorder(json: any): void 
-        function setPosition(json: any): void 
-        function setPositionAndRotation(json: any): void 
-        function setPositionAndRotation2(json: any): void 
-        function setPositionAndUpdate(json: any): void 
-        function setRotation(json: any): void 
-        function setRotationYawHead(json: any): void 
-        function setSilent(json: any): void 
-        function setSize(json: any): void 
-        function setSneaking(json: any): void 
-        function setSprinting(json: any): void 
-        function setVelocity(json: any): void 
-        function getUUID(): string 
-        function getAir(): number 
-        function getAlwaysRenderNameTag(): boolean 
-        function getAlwaysRenderNameTagForRender(): boolean 
-        function getBrightness(json: any): number 
-        function getBrightnessForRender(json: any): number 
-        function getCollisionBorderSize(): number 
-        function getCollisionBoundingBox()
-        function getCommandSenderEntity()
-        function getCustomNameTag(): string 
-        function getDisplayName(): string 
-        function getDisplayNameFormatted(): string 
-        function getDistance(json: any): number 
-        function getDistanceSq(json: any): number 
-        function getMountedYOffset(): number 
-        function getEntityId(): number 
-        function getEntityString(): string 
-        function getEyeHeight(): number 
-        function getFlag(json: any): boolean 
-        function getMaxFallHeight(): number 
-        function getMaxInPortalTime(): number 
-        function getName(): string 
-        function getParts()
-        function getPortalCooldown(): number 
-        function getRotationYawHead(): number 
-        function getSplashSound(): string 
-        function getSwimSound(): string 
-        function getYOffset(): number 
-        function getClassName(): string 
-        function getPositionVector()
-        function getPositionEyes(json: any) 
-        function getLook(json: any)
-        function getLookVec()
-        function getVectorForRotation(json: any)
-        function toNBT(): string
-        function fromNBT(json: any): void 
-        function getPreviousEquipment()
-        function getAttackingPlayer()
-        function getLastAttacker()
-        function getEntityLivingToAttack() 
-        function setEntityLivingToAttack(json: any): void 
-        function canBreatheUnderwater(): boolean 
-        function isChild(): boolean 
-        function canDropLoot(): boolean 
-        function decreaseAirSupply(json: any): number 
-        function isPlayer(): boolean 
-        function getAITarget()
-        function getRevengeTimer(): number 
-        function getLastAttackerTime(): number 
-        function getAge(): number 
-        function clearActivePotions(): void 
-        function isPotionActive(json: any): boolean 
-        function isEntityUndead(): boolean 
-        function removePotionEffectClient(json: any): void 
-        function removePotionEffect(json: any): void 
-        function heal(json: any): void 
-        function getHealth(): number 
-        function setHealth(json: any): void 
-        function getHurtSound(): string 
-        function getDeathSound(): string 
-        function addRandomDrop(): void 
-        function isOnLadder(): boolean 
-        function isEntityAlive(): boolean 
-        function fall(json: any): void 
-        function getFallSoundString(json: any): string 
-        function performHurtAnimation(): void 
-        function getTotalArmorValue(): number 
-        function damageArmor(json: any): void 
-        function getMaxHealth(): number 
-        function getArrowCountInEntity(): number 
-        function setArrowCountInEntity(json: any): void 
-        function swingItem(): void 
-        function kill(): void 
-        function setSprinting(json: any): void 
-        function getSoundVolume(): number 
-        function getSoundPitch(): number 
-        function isMovementBlocked(): boolean 
-        function getJumpUpwardsMotion(): number 
-        function jump(): void 
-        function updateAITick(): void 
-        function handleJumpLava(): void 
-        function getAIMoveSpeed(): number 
-        function setAIMoveSpeed(json: any): void 
-        function collideWithNearbyEntities(): void 
-        function setJumping(json: any): void 
-        function canBeCollidedWith(): boolean 
-        function canBePushed(): boolean 
-        function setBeenAttacked(): void 
-        function getRotationYawHead(): number 
-        function setRotationYawHead(json: any): void 
-        function getAbsorptionAmount(): number 
-        function setAbsorptionAmount(json: any): void 
-        function markPotionsDirty(): void 
-        function getItemInUse(): any;
-        function getItemInUseCount(): number;
-        function isUsingItem(): boolean;
-        function getItemInUseDuration(): number;
-        function stopUsingItem(): void;
-        function clearItemInUse(): void;
-        function isBlocking(): boolean;
-        function getMaxInPortalTime(): number;
-        function getSwimSound(): string;
-        function getSplashSound(): string;
-        function getPortalCooldown(): number;
-        function playSound(json: any): void;
-        function updateItemUse(json: any): void;
-        function onItemUseFinish(): void;
-        function handleStatusUpdate(json: any): void;
-        function isMovementBlocked(): boolean;
-        function closeScreen(): void;
-        function updateRidden(): void;
-        function preparePlayerToSpawn(): void;
-        function updateEntityActionState(): void;
-        function onLivingUpdate(): void;
-        function collideWithPlayer(json: any): void;
-        function getScore(): number;
-        function addScore(json: any): void;
-        function getHurtSound(): string;
-        function getDeathSound(): string;
-        function addToPlayerScore(json: any): void;
-        function dropOneItem(json: any): any;
-        function dropPlayerItemWithRandomChoice(json: any): any;
-        function dropItem(json: any): any;
-        function joinEntityItemWithWorld(json: any): void;
-        function getToolDigEfficiency(json: any): number;
-        function canHarvestBlock(json: any): boolean;
-        function canAttackPlayer(json: any): boolean;
-        function damageArmor(json: any): void;
-        function getTotalArmorValue(): number;
-        function getArmorVisibility(): number;
-        function interactWith(json: any): boolean;
-        function getCurrentEquippedItem(): any;
-        function destroyCurrentEquippedItem(): void;
-        function getYOffset(): number;
-        function attackTargetEntityWithCurrentItem(json: any): void;
-        function respawnPlayer(): void;
-        function isEntityInsideOpaqueBlock(): boolean;
-        function isUser(): boolean;
-        function trySleep(json: any): string;
-        function wakeUpPlayer(json: any): void;
-        function isInBed(): boolean;
-        function getBedOrientationInDegrees(): number;
-        function isPlayerSleeping(): boolean;
-        function isPlayerFullyAsleep(): boolean;
-        function getSleepTimer(): number;
-        function getBedLocation(): any;
-        function isSpawnForced(): boolean;
-        function setSpawnPoint(json: any): void;
-        function moveEntityWithHeading(json: any): void;
-        function getAIMoveSpeed(): number;
-        function addMovementStat(json: any): void;
-        function addMountedMovementStat(json: any): void;
-        function fall(json: any): void;
-        function resetHeight(): void;
-        function getFallSoundString(json: any): string;
-        function setInWeb(): void;
-        function getCurrentArmor(json: any): any;
-        function addExperience(json: any): void;
-        function getXPSeed(): number;
-        function removeExperienceLevel(json: any): void;
-        function addExperienceLevel(json: any): void;
-        function xpBarCap(): number;
-        function addExhaustion(json: any): void;
-        function getFoodStats(): any;
-        function canEat(json: any): boolean;
-        function shouldHeal(): boolean;
-        function setItemInUse(json: any): void;
-        function isAllowEdit(): boolean;
-        function canPlayerEdit(json: any): boolean;
-        function isPlayer(): boolean;
-        function getAlwaysRenderNameTagForRender(): boolean;
-        function clonePlayer(json: any): void;
-        function canTriggerWalking(): boolean;
-        function sendPlayerAbilities(): void;
-        function getName(): string;
-        function getEquipmentInSlot(json: any): any;
-        function getHeldItem(): any;
-        function setCurrentItemOrArmor(json: any): void;
-        function isInvisibleToPlayer(json: any): boolean;
-        function getInventory(): any[];
-        function isPushedByWater(): boolean;
-        function getEyeHeight(): number;
-        function getOfflineUUID(json: any): string;
-        function replaceItemInInventory(json: any): boolean;
-        function setReducedDebug(json: any): void;
-        function mountEntity(json: any): void;
-        function dropOneItem(json: any): any;
-        function sendChatMessage(json: any): void;
-        function respawnPlayer(): void;
-        function closeScreen(): void;
-        function closeScreenAndDropStack(): void;
-        function setPlayerSPHealth(json: any): void;
-        function isUser(): boolean;
-        function sendHorseJump(): void;
-        function sendHorseInventory(): void;
-        function setClientBrand(json: any): void;
-        function getClientBrand(): string;
-        function pushOutOfBlocks(json: any): boolean;
-        function isOpenBlockSpace(json: any): boolean;
-        function setXPStats(json: any): void;
-        function playSound(json: any): void;
-        function isServerWorld(): boolean;
-        function isRidingHorse(): boolean;
-        function getHorseJumpPower(): number;
-        function isCurrentViewEntity(): boolean;
-        function isSpectator(): boolean;
-
-
-        let lastReportedPosX: number
-        let lastReportedPosY: number
-        let lastReportedPosZ: number
-        let lastReportedYaw: number
-        let lastReportedPitch: number
-        let serverSneakState: boolean
-        let serverSprintState: boolean
-        let positionUpdateTicks: number
-        let hasValidHealth: boolean
-        let clientBrand: string
-        let sprintToggleTimer: number
-        let sprintingTicksLeft: number
-        let renderArmYaw: number
-        let renderArmPitch: number
-        let prevRenderArmYaw: number
-        let prevRenderArmPitch: number
-        let horseJumpPower: number
-        let horseJumpPowerCounter: number
-        let x: number;
-        let y: number;
-        let z: number;
-        let chunkCoordX: number;
-        let chunkCoordY: number;
-        let chunkCoordZ: number;
-        let motionX: number;
-        let motionY: number;
-        let motionZ: number;
-        let yaw: number;
-        let pitch: number;
-        let isInWeb: boolean;
-        let isCollided: boolean;
-        let isCollidedVertically: boolean;
-        let isCollidedHorizontally: boolean;
-        let onGround: boolean;
-        let dimension: number;
-        let id: number;
-        let fallDistance: number;
-        let noClip: boolean;
-        let stepHeight: number;
-        let isDead: boolean;
-        let inPortal: boolean;
-        let inWater: boolean;
-        let isAirBorne: boolean;
-        let ticksExisted: number;
-        let invulnerable: boolean;
-        let isImmuneToFire: boolean;
-        let isOutsideBorder: boolean;
-        let entityCollisionReduction: number;
-        let isSwingInProgress: boolean;
-        let arrowHitTimer: number;
-        let hurtTime: number;
-        let maxHurtTime: number;
-        let swingProgressInt: number;
-        let attackedAtYaw: number;
-        let deathTime: number;
-        let prevSwingProgress: number;
-        let swingProgress: number;
-        let prevLimbSwingAmount: number;
-        let limbSwingAmount: number;
-        let limbSwing: number;
-        let maxHurtResistantTime: number;
-        let prevCameraPitch: number;
-        let cameraPitch: number;
-        let renderYawOffset: number;
-        let prevRenderYawOffset: number;
-        let rotationYawHead: number;
-        let prevRotationYawHead: number;
-        let jumpMovementFactor: number;
-        let recentlyHit: number;
-        let dead: boolean;
-        let entityAge: number;
-        let onGroundSpeedFactor: number;
-        let prevOnGroundSpeedFactor: number;
-        let movedDistance: number;
-        let prevMovedDistance: number;
-        let scoreValue: number;
-        let isJumping: boolean;
-        let moveForward: number;
-        let moveStrafing: number;
-        let randomYawVelocity: number;
-        let newPosRotationIncrements: number;
-        let newPosX: number;
-        let newPosY: number;
-        let newPosZ: number;
-        let newRotationPitch: number;
-        let newRotationYaw: number;
-        let revengeTimer: number;
-        let lastAttackerTime: number;
-        let landMovementFactor: number;
-        let jumpTicks: number;
-        let absorptionAmount: number;
-        let flyToggleTimer: number;
-        let hasReducedDebug: boolean;
-        let itemInUseCount: number;
-        let lastXPSound: number;
-        let sleepTimer: number;
-        let sleeping: boolean;
-        let spawnForced: boolean;
-        let speedInAir: number;
-        let speedOnGround: number;
-        let xpCooldown: number;
-        let xpSeed: number;
-        /**Equal to the player's `inventoryContainer` */
-        namespace inventoryContainer{
-            let inventoryItemStacks : any
-            function getPlayerList() : any
-        }
-
-        /**Equal to the player's `openContainer` */
-        namespace openContainer{
-            let inventoryItemStacks : any
-            function getPlayerList() : any
-        }
-
-
-
-        /**The itemstack the player is using. (If existing) */
-        namespace itemInUse{
-            /**
-             * The amount of items in the stack.
-             */
-            let amount: number;
-
-            /**
-             * The number of animation frames left for the item.
-             */
-            let animationsToGo: number;
-
-            /**
-             * The ID of the item.
-             */
-            let itemId: number;
-
-            /**
-             * The damage value of the item.
-             */
-            let itemDamage: number;
-
-            /**
-             * The entity data of the item frame, if it exists.
-             */
-            let itemFrame: any;
-
-            /**
-             * The block data representing which blocks this item can destroy.
-             */
-            let canDestroyCacheBlock: any;
-
-            /**
-             * Indicates whether the item can destroy the cached block.
-             */
-            let canDestroyCacheResult: boolean;
-
-            /**
-             * The block data representing which blocks this item can be placed on.
-             */
-            let canPlaceOnCacheBlock: any;
-
-            /**
-             * Indicates whether the item can be placed on the cached block.
-             */
-            let canPlaceOnCacheResult: boolean;
-
-            /**
-             * Gets the item data associated with this item stack.
-             */
-            function getItem(): any;
-
-            /**
-             * Gets the maximum stack size for this item.
-             */
-            function getMaxStackSize(): number;
-
-            /**
-             * Checks if the item stack is stackable.
-             */
-            function isStackable(): boolean;
-
-            /**
-             * Checks if the item stack can be damaged.
-             */
-            function isItemStackDamageable(): boolean;
-
-            /**
-             * Checks if the item has subtypes.
-             */
-            function getHasSubtypes(): boolean;
-
-            /**
-             * Checks if the item is damaged.
-             */
-            function isItemDamaged(): boolean;
-
-            /**
-             * Gets the damage value of the item.
-             */
-            function getItemDamage(): number;
-
-            /**
-             * Gets the metadata of the item.
-             */
-            function getMetadata(): number;
-
-            /**
-             * Sets the damage value of the item.
-             * @param json The metadata value {meta: number}.
-             */
-            function setItemDamage(json: any): void;
-
-            /**
-             * Gets the maximum damage of the item.
-             */
-            function getMaxDamage(): number;
-
-            /**
-             * Copies the item stack.
-             */
-            function copy(): any;
-
-            /**
-             * Gets the unlocalized name of the item.
-             */
-            function getUnlocalizedName(): string;
-
-            /**
-             * Converts the item stack to a string representation.
-             */
-            function toString(): string;
-
-            /**
-             * Gets the maximum duration the item can be used.
-             */
-            function getMaxItemUseDuration(): number;
-
-            /**
-             * Gets the display name of the item.
-             */
-            function getDisplayName(): string;
-
-            /**
-             * Sets the display name of the item stack.
-             * @param json The display name {displayName: string}.
-             */
-            function setDisplayName(json: any): any;
-
-            /**
-             * Clears the custom name of the item stack.
-             */
-            function clearCustomName(): void;
-
-            /**
-             * Checks if the item stack has a display name.
-             */
-            function hasDisplayName(): boolean;
-
-            /**
-             * Checks if the item stack has any enchantments.
-             */
-            function hasEffect(): boolean;
-
-            /**
-             * Checks if the item can be enchanted.
-             */
-            function isItemEnchantable(): boolean;
-
-            /**
-             * Adds an enchantment to the item stack.
-             * @param json The enchantment and its level {ench: EnchantmentRef, level: number}.
-             */
-            function addEnchantment(json: any): void;
-
-            /**
-             * Checks if the item stack is enchanted.
-             */
-            function isItemEnchanted(): boolean;
-
-            /**
-             * Checks if the item allows editing blocks.
-             */
-            function canEditBlocks(): boolean;
-
-            /**
-             * Checks if the item is on an item frame.
-             */
-            function isOnItemFrame(): boolean;
-
-            /**
-             * Gets the repair cost of the item.
-             */
-            function getRepairCost(): number;
-
-            /**
-             * Sets the repair cost of the item.
-             * @param json The repair cost {cost: number}.
-             */
-            function setRepairCost(json: any): void;
-
-            /**
-             * Sets the item for this item stack.
-             * @param newItem The new item.
-             */
-            function setItem(json: any): void;
-
-            /**
-             * Checks if the item can destroy a specific block.
-             * @param json The block ID {blockId: number}.
-             */
-            function canDestroy(json: any): boolean;
-
-            /**
-             * Checks if the item can be placed on a specific block.
-             * @param json The block ID {blockId: number}.
-             */
-            function canPlaceOn(json: any): boolean;
-
-            /**
-             * Converts the item stack to NBT format.
-             */
-            function toNBT(): string;
-
-            /**
-             * Loads item stack data from NBT format.
-             * @param json The NBT data {nbt: string}.
-             */
-            function fromNBT(json: any): void;
-
-            /**
-             * Gets the lore associated with the item.
-             */
-            function getLore(): string[];
-
-            /**
-             * Sets the lore associated with the item.
-             * @param json The lore {lore: string[]}.
-             */
-            function setLore(json: any): void;
-
-        }
-
-        /**The player's fishing bobber / hook. (If existing) */
-        namespace fishEntity{
-            /**
-             * Whether or not the fish hook is in the ground.
-             */
-            let inGround: boolean;
-
-            /**
-             * Equal to the fish hook's xTile.
-             */
-            let xTile: number;
-
-            /**
-             * Equal to the fish hook's yTile.
-             */
-            let yTile: number;
-
-            /**
-             * Equal to the fish hook's zTile.
-             */
-            let zTile: number;
-
-            /**
-             * Equal to the fish hook's shake.
-             */
-            let shake: number;
-
-            /**
-             * Equal to the fish hook's ticksCatchable.
-             */
-            let ticksCatchable: number;
-
-            /**
-             * Equal to the fish hook's ticksCatchableDelay.
-             */
-            let ticksCatchableDelay: number;
-
-            /**
-             * Equal to the fish hook's ticksCaughtDelay.
-             */
-            let ticksCaughtDelay: number;
-
-            /**
-             * Equal to the fish hook's ticksInAir.
-             */
-            let ticksInAir: number;
-
-            /**
-             * Equal to the fish hook's ticksInGround.
-             */
-            let ticksInGround: number;
-
-            /**
-             * The entity the fish hook is hooked on to. (If existing)
-             */
-            namespace caughtEntity{
-                /**
-                 * Equal to the entity's posX.
-                 */
-                let x: number;
-
-                /**
-                 * Equal to the entity's posY.
-                 */
-                let y: number;
-
-                /**
-                 * Equal to the entity's posZ.
-                 */
-                let z: number;
-
-                /**
-                 * Equal to the entity's chunkCoordX. (Read-only)
-                 */
-                let chunkCoordX: number;
-
-                /**
-                 * Equal to the entity's chunkCoordY. (Read-only)
-                 */
-                let chunkCoordY: number;
-
-                /**
-                 * Equal to the entity's chunkCoordZ. (Read-only)
-                 */
-                let chunkCoordZ: number;
-
-                /**
-                 * Equal to the entity's motionX.
-                 */
-                let motionX: number;
-
-                /**
-                 * Equal to the entity's motionY.
-                 */
-                let motionY: number;
-
-                /**
-                 * Equal to the entity's motionZ.
-                 */
-                let motionZ: number;
-
-                /**
-                 * Equal to the entity's rotationYaw.
-                 */
-                let yaw: number;
-
-                /**
-                 * Equal to the entity's rotationPitch.
-                 */
-                let pitch: number;
-
-                /**
-                 * Equal to the entity's isInWeb.
-                 */
-                let isInWeb: boolean;
-
-                /**
-                 * Equal to the entity's isCollided.
-                 */
-                let isCollided: boolean;
-
-                /**
-                 * Equal to the entity's isCollidedVertically.
-                 */
-                let isCollidedVertically: boolean;
-
-                /**
-                 * Equal to the entity's isCollidedHorizontally.
-                 */
-                let isCollidedHorizontally: boolean;
-
-                /**
-                 * Equal to the entity's onGround.
-                 */
-                let onGround: boolean;
-
-                /**
-                 * Equal to the entity's dimension. (Read-only)
-                 */
-                let dimension: number;
-
-                /**
-                 * Equal to the entity's entityId. (Read-only)
-                 */
-                let id: number;
-
-                /**
-                 * Equal to the entity's fallDistance. (Read-only)
-                 */
-                let fallDistance: number;
-
-                /**
-                 * Equal to the entity's noClip.
-                 */
-                let noClip: boolean;
-
-                /**
-                 * Equal to the entity's stepHeight.
-                 */
-                let stepHeight: number;
-
-                /**
-                 * Equal to the entity's isDead. (Read-only)
-                 */
-                let isDead: boolean;
-
-                /**
-                 * Equal to the entity's inPortal.
-                 */
-                let inPortal: boolean;
-
-                /**
-                 * Equal to the entity's inWater.
-                 */
-                let inWater: boolean;
-
-                /**
-                 * Equal to the entity's isAirBorne.
-                 */
-                let isAirBorne: boolean;
-
-                /**
-                 * Equal to the entity's ticksExisted. (Read-only)
-                 */
-                let ticksExisted: number;
-
-                /**
-                 * Equal to the entity's invulnerable.
-                 */
-                let invulnerable: boolean;
-
-
-                /**
-                 * Equal to the entity's isOutsideBorder.
-                 */
-                let isOutsideBorder: boolean;
-
-                /**
-                 * Equal to the entity's entityCollisionReduction.
-                 */
-                let entityCollisionReduction: number;
-
-                /**
-                 * Whether the entity is burning.
-                 */
-                function isBurning(): boolean;
-
-                /**
-                 * Whether the entity is pushed by water.
-                 */
-                function isPushedByWater(): boolean;
-
-                /**
-                 * Whether the entity is eating.
-                 */
-                function isEating(): boolean;
-
-                /**
-                 * Whether the entity is alive.
-                 */
-                function isEntityAlive(): boolean;
-
-                /**
-                 * Whether the entity is inside an opaque block.
-                 */
-                function isEntityInsideOpaqueBlock(): boolean;
-
-                /**
-                 * Whether the entity is immune to explosions.
-                 */
-                function isImmuneToExplosions(): boolean;
-
-                /**
-                 * Whether the entity is immune to fire.
-                 */
-                function isImmuneToFire(): boolean;
-
-                /**
-                 * Whether the entity is in lava.
-                 */
-                function isInLava(): boolean;
-
-                /**
-                 * Whether the entity is in range to render in 3D.
-                 * @param json The coordinates {x: number, y: number, z: number}.
-                 */
-                function isInRangeToRender3d(json: any): boolean;
-
-                /**
-                 * Whether the entity is in range to render with the given distance.
-                 * @param json The distance {distance: number}.
-                 */
-                function isInRangeToRenderDist(json: any): boolean;
-
-                /**
-                 * Whether the entity is in water.
-                 */
-                function isInWater(): boolean;
-
-                /**
-                 * Whether the entity is invisible.
-                 */
-                function isInvisible(): boolean;
-
-                /**
-                 * Whether the entity is riding.
-                 */
-                function isRiding(): boolean;
-
-                /**
-                 * Whether the entity is silent.
-                 */
-                function isSilent(): boolean;
-
-                /**
-                 * Whether the entity is sneaking.
-                 */
-                function isSneaking(): boolean;
-
-                /**
-                 * Whether the entity is sprinting.
-                 */
-                function isSprinting(): boolean;
-
-                /**
-                 * Whether the entity is wet.
-                 */
-                function isWet(): boolean;
-
-                /**
-                 * Sets the air level of the entity.
-                 * @param json The air level {air: number}.
-                 */
-                function setAir(json: any): void;
-
-                /**
-                 * Sets whether the entity's name tag is always rendered.
-                 * @param json Whether the name tag should always be rendered {alwaysRenderNameTag: boolean}.
-                 */
-                function setAlwaysRenderNameTag(json: any): void;
-
-                /**
-                 * Sets the angles of the entity.
-                 * @param json The angles {yaw: number, pitch: number}.
-                 */
-                function setAngles(json: any): void;
-
-                /**
-                 * Marks the entity as being attacked.
-                 */
-                function setBeenAttacked(): void;
-
-                /**
-                 * Sets the custom name tag of the entity.
-                 * @param json The name tag {name: string}.
-                 */
-                function setCustomNameTag(json: any): void;
-
-                /**
-                 * Marks the entity as dead.
-                 */
-                function setDead(): void;
-
-                /**
-                 * Sets whether the entity is eating.
-                 * @param json Whether the entity is eating {eating: boolean}.
-                 */
-                function setEating(json: any): void;
-
-                /**
-                 * Sets the entity's ID.
-                 * @param json The entity ID {id: number}.
-                 */
-                function setEntityId(json: any): void;
-
-                /**
-                 * Sets the entity on fire for a specified number of seconds.
-                 * @param json The number of seconds {seconds: number}.
-                 */
-                function setFire(json: any): void;
-
-                /**
-                 * Sets a flag on the entity.
-                 * @param json The flag to set {flag: number, set: boolean}.
-                 */
-                function setFlag(json: any): void;
-
-                /**
-                 * Marks the entity as being in a web.
-                 */
-                function setInWeb(): void;
-
-                /**
-                 * Sets whether the entity is invisible.
-                 * @param json Whether the entity is invisible {invisible: boolean}.
-                 */
-                function setInvisible(json: any): void;
-
-                /**
-                 * Sets the location and angles of the entity.
-                 * @param json The location and angles {x: number, y: number, z: number, yaw: number, pitch: number}.
-                 */
-                function setLocationAndAngles(json: any): void;
-
-                /**
-                 * Sets the entity on fire from lava.
-                 */
-                function setOnFireFromLava(): void;
-
-                /**
-                 * Sets whether the entity is outside the border.
-                 * @param json Whether the entity is outside the border {outsideBorder: boolean}.
-                 */
-                function setOutsideBorder(json: any): void;
-
-                /**
-                 * Sets the position of the entity.
-                 * @param json The position {x: number, y: number, z: number}.
-                 */
-                function setPosition(json: any): void;
-
-                /**
-                 * Sets the position and rotation of the entity.
-                 * @param json The position and rotation {x: number, y: number, z: number, yaw: number, pitch: number}.
-                 */
-                function setPositionAndRotation(json: any): void;
-
-                /**
-                 * Sets the position and rotation of the entity.
-                 * @param json The position and rotation {d0: number, d1: number, d2: number, f: number, f1: number, var9: number, var10: boolean}.
-                 */
-                function setPositionAndRotation2(json: any): void;
-
-                /**
-                 * Sets the position and updates.
-                 * @param json The position {d0: number, d1: number, d2: number}.
-                 */
-                function setPositionAndUpdate(json: any): void;
-
-                /**
-                 * Sets the rotation of the entity.
-                 * @param json The rotation {yaw: number, pitch: number}.
-                 */
-                function setRotation(json: any): void;
-
-                /**
-                 * Sets the rotation of the entity's yaw head.
-                 * @param json The rotation {rotation: number}.
-                 */
-                function setRotationYawHead(json: any): void;
-
-                /**
-                 * Sets whether the entity is silent.
-                 * @param json Whether the entity is silent {isSilent: boolean}.
-                 */
-                function setSilent(json: any): void;
-
-                /**
-                 * Sets the size of the entity.
-                 * @param json The size {f: number, f1: number}.
-                 */
-                function setSize(json: any): void;
-
-                /**
-                 * Sets whether the entity is sneaking.
-                 * @param json Whether the entity is sneaking {sneaking: boolean}.
-                 */
-                function setSneaking(json: any): void;
-
-                /**
-                 * Sets whether the entity is sprinting.
-                 * @param json Whether the entity is sprinting {flag: boolean}.
-                 */
-                function setSprinting(json: any): void;
-
-                /**
-                 * Sets the velocity of the entity.
-                 * @param json The velocity {x: number, y: number, z: number}.
-                 */
-                function setVelocity(json: any): void;
-
-                /**
-                 * Gets the UUID of the entity.
-                 */
-                function getUUID(): string;
-
-                /**
-                 * Gets the air level of the entity.
-                 */
-                function getAir(): number;
-
-                /**
-                 * Gets whether the entity's name tag is always rendered.
-                 */
-                function getAlwaysRenderNameTag(): boolean;
-
-                /**
-                 * Gets whether the entity's name tag is always rendered for rendering purposes.
-                 */
-                function getAlwaysRenderNameTagForRender(): boolean;
-
-                /**
-                 * Gets the brightness at the given light level.
-                 * @param json The light level {var1: number}.
-                 */
-                function getBrightness(json: any): number;
-
-                /**
-                 * Gets the brightness for rendering at the given light level.
-                 * @param json The light level {var1: number}.
-                 */
-                function getBrightnessForRender(json: any): number;
-
-                /**
-                 * Gets the collision border size of the entity.
-                 */
-                function getCollisionBorderSize(): number;
-
-                /**
-                 * Gets the collision bounding box of the entity.
-                 */
-                function getCollisionBoundingBox(): any;
-
-                /**
-                 * Gets the custom name tag of the entity.
-                 */
-                function getCustomNameTag(): string;
-
-                /**
-                 * Gets the display name of the entity.
-                 */
-                function getDisplayName(): string;
-
-                /**
-                 * Gets the formatted display name of the entity.
-                 */
-                function getDisplayNameFormatted(): string;
-
-                /**
-                 * Gets the distance between the entity and the specified coordinates.
-                 * @param json The coordinates {x: number, y: number, z: number}.
-                 */
-                function getDistance(json: any): number;
-
-                /**
-                 * Gets the squared distance between the entity and the specified coordinates.
-                 * @param json The coordinates {x: number, y: number, z: number}.
-                 */
-                function getDistanceSq(json: any): number;
-
-                /**
-                 * Gets the mounted Y offset of the entity.
-                 */
-                function getMountedYOffset(): number;
-
-                /**
-                 * Gets the entity ID.
-                 */
-                function getEntityId(): number;
-
-                /**
-                 * Gets the entity string.
-                 */
-                function getEntityString(): string;
-
-                /**
-                 * Gets the eye height of the entity.
-                 */
-                function getEyeHeight(): number;
-
-                /**
-                 * Gets the value of the flag at the specified index.
-                 * @param json The flag index {flag: number}.
-                 */
-                function getFlag(json: any): boolean;
-
-                /**
-                 * Gets the maximum fall height of the entity.
-                 */
-                function getMaxFallHeight(): number;
-
-                /**
-                 * Gets the maximum in-portal time of the entity.
-                 */
-                function getMaxInPortalTime(): number;
-
-                /**
-                 * Gets the name of the entity.
-                 */
-                function getName(): string;
-
-                /**
-                 * Gets the parts of the entity.
-                 */
-                function getParts(): any[];
-
-                /**
-                 * Gets the portal cooldown of the entity.
-                 */
-                function getPortalCooldown(): number;
-
-                /**
-                 * Gets the yaw rotation of the entity's head.
-                 */
-                function getRotationYawHead(): number;
-
-                /**
-                 * Gets the sound played when the entity splashes.
-                 */
-                function getSplashSound(): string;
-
-                /**
-                 * Gets the sound played when the entity swims.
-                 */
-                function getSwimSound(): string;
-
-                /**
-                 * Gets the Y offset of the entity.
-                 */
-                function getYOffset(): number;
-
-                /**
-                 * Gets the class name of the entity.
-                 */
-                function getClassName(): string;
-
-                /**
-                 * Gets the position vector of the entity.
-                 */
-                function getPositionVector(): any;
-
-                /**
-                 * Gets the position vector of the entity's eyes.
-                 * @param json The partial ticks {partialTicks: number}.
-                 */
-                function getPositionEyes(json: any): any;
-
-                /**
-                 * Gets the look vector of the entity.
-                 * @param json The partial ticks {partialTicks: number}.
-                 */
-                function getLook(json: any): any;
-
-                /**
-                 * Gets the look vector of the entity.
-                 */
-                function getLookVec(): any;
-
-                /**
-                 * Gets the vector for the rotation.
-                 * @param json The rotation {yaw: number, float: number}.
-                 */
-                function getVectorForRotation(json: any): any;
-
-                /**
-                 * Converts the entity to NBT format.
-                 */
-                function toNBT(): string;
-
-                /**
-                 * Loads entity data from NBT format.
-                 * @param json The NBT data {nbt: string}.
-                 */
-                function fromNBT(json: any): void;
-
-            }
-
-            /**
-             * Equal to the fish hook's fishApproachAngle.
-             */
-            let fishApproachAngle: number;
-
-            /**
-             * Equal to the fish hook's fishPitch.
-             */
-            let fishPitch: number;
-
-            /**
-             * Equal to the fish hook's fishPosRotationIncrements.
-             */
-            let fishPosRotationIncrements: number;
-
-        }
+    function displayToChat(message: string): void;
+
+    /**
+     * This is a key-value dictionary of all of the enchantments in the game. 
+     * 
+     * It is generated upon init from the static variables of the Enchantment class.
+     * You can also regenerate this by calling ModAPI.util.bootstrap().
+     * 
+     * @example <caption>To access the enchantment class for knockback, you can use:</caption>
+     * ModAPI.enchantments["knockback"]
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let enchantments: any;
+
+    /**
+     * Events broadcast data for use in mods.
+     * The events global, ModAPI.events, allows you to register new event types and call them.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/events.html} Events Documentation
+     */
+    namespace events {
+        /**
+         * You can register new events using ModAPI, as long as the event name starts with custom: (lib: is only useful for library loading).
+         * 
+         * Library events function differently to normal events, as when they are called once, any new event listener with automatically fire upon being registered.
+         * 
+         * @example <caption>regular event:</caption>
+         * ModAPI.events.newEvent("custom:myevent")
+         * @example <caption>lib event:</caption>
+         * ModAPI.events.newEvent("lib:mylibrary")
+         * @param {string} eventName 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/events.html} Events Documentation
+         */
+        function newEvent(eventName: string): void;
         
+        /**
+         * Call an EaglerForge event. Default Eaglerforge events dont have a prefix, custom events have the "custom:" prefix, and library events have the "lib:" prefix.
+         * 
+         * Library events function differently to normal events, as when they are called once, any new event listener with automatically fire upon being registered.
+         * 
+         * @example
+         * // Mod #1, registers event handler for custom event
+         * ModAPI.addEventListener("custom:myevent", (e)=>{
+         *     alert(e.secretCode);
+         * });
+         * // Mod #2, registers and calls custom event
+         * ModAPI.events.newEvent("custom:myevent");
+         * ModAPI.events.callEvent("custom:myevent", {
+         *     secretCode: "1234"
+         * });
+         * @param {string} eventName 
+         * @param {object} data This is the object that is passed to the event listeners callback.
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/events.html} Events Documentation
+         */
+        function callEvent(eventName: string, data: object): void;
+
+        /**
+         * Undocumented internals
+         * 
+         * Although its pretty obvious what this is.
+         * Its an array of strings containing all the currently registered events.
+         * 
+         * This is not part of the official EaglerForge documentation.
+         */
+        let types: Array<string>;
+
+        /**
+         * Undocumented internals
+         */
+        let lib_map: any;
+
+        /**
+         * Undocumented internals
+         */
+        let listeners: any;
+    }
+    /**
+     * The flavour of ModAPI. Hardcoded to be "injector".
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let flavour: string;
+
+    /**
+     * Undocumented internals
+     * 
+     * I legit have no idea what this does.
+     * 
+     * If you do, comment on the "Modern ModAPI Type Definitions" thread in the official EaglerForge Discord Server.
+     */
+    function freezeCallstack(): void;
+
+    /**
+     * Gets the frames per second of the game
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    function getFPS(): number;
+
+    /**
+     * If you REALLY need this and cant use anything else from ModAPI, I wish you luck. (Block_2222)
+     * 
+     * This is the internal hooking map for ModAPI and can be used to patch, intercept, or rewrite internal functions, and more.
+     * 
+     * ModAPI.hooks is the global generated by actual code.
+     * 
+     * This has quite a few properties, but most of them are just foundations for more user friendly parts of ModAPI, so they wont have much information.
+     * 
+     * Most of this is undocumented. if you know more about hooks, please tell me in the "Modern ModAPI Type Definitions" thread in the official EF Discord.
+     * 
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/hooks.html} Hooks Documentation
+     */
+    namespace hooks {
+        /**
+         * Undocumented internals
+         * @param {any} runner idfk what this is
+         */
+        function TeaVMThread(runner: any): void;
+
+        /**
+         * Undocumented internals
+         * 
+         * What I know is that its related to ModAPI.freezeCallstack()
+         */
+        let freezeCallstack: boolean;
+
+        //finally something with docs
+        /**
+         * This is a String-to-method dictionary/object of every Java method. 
+         * 
+         * This allows you to do pretty much whatever you want in terms of modifying and hooking into code.
+         * 
+         * You shouldnt need to use hooks unless everything else fails.
+         * 
+         * I really recomend reading the hooks documentation for more information.
+         * 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/hooks.html} Hooks Documentation
+         */
+        let methods: any;
+
+        /**
+         * Undocumented internals
+         * 
+         * Regenerates the _classMap (duhh)
+         */
+        function regenerateClassMap(): void;
+        /**
+         * Undocumented internals
+         * 
+         * The thing that regenerateClassMap() regenerates
+         */
+        let _classMap: any;
+
+        //i gave up on guessing what these do after this
+        //i dont have infinite time to snoop in ModAPI lmao
+
+        /**
+         * Undocumented internals
+         */
+        let _postInit: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedConstructorKeys: any;
+
+        /**
+         * Undocumented internals
+         */
+        let _rippedConstructors: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedData: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedInterfaceKeys: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedInterfaceMap: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedInternalConstructorKeys: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedInternalConstructors: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedMethodKeys:any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedMethodTypeMap: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedStaticIndexer: any;
+        /**
+         * Undocumented internals
+         */
+        let _rippedStaticProperties: any;
+        /**
+         * ModAPI.hooks._teavm is usually only used for internal purposes, but it is basically a collection of every internal TeaVM method.
+         * 
+         * Keep in mind that this only stores references (for performance reasons), so modifying and editing it’s contents will not affect the way the game runs.
+         * 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/hooks.html} Hooks Documentation
+         */
+        let _teavm: any;
+    }
+
+    /**
+     * This is a key-value dictionary of all of the items in the game.
+     *  
+     * It is generated upon init from the static variables of the Items class.
+     * You can also regenerate this by calling ModAPI.util.bootstrap().
+     * 
+     * @example <caption>For example, to access the item class for acacia_door, you can use:</caption>
+     * ModAPI.items["acacia_door"]
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let items: any;
+
+    /**
+     * This is the raw minecraft instance for the client, generated upon init.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let javaClient: any;
+
+    /**
+     * This module is used to get IDs for registering blocks and items without hardcoding an ID.
+     * 
+     * ModAPI.keygen contains the API for getting numerical item, block and entity IDs from a string.
+     * 
+     * It looks at registries to derive the IDs, so IDs will not be automatically reserved until something is actually registered into the game.
+     * 
+     * Ideally, you’d want to call a keygen method just before registering something.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/keygen.html} Keygen Documentation
+     */
+    namespace keygen {
+        /**
+         * Generate numerical id for an Item.
+         * 
+         * @example
+         * var id = ModAPI.keygen.item("my_example_item");
+         * @param {string} itemId Textual id
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/keygen.html} Keygen Documentation
+         */
+        function item(itemId: string): void;
         
-        namespace foodStats{
-            let foodLevel: number;
-            let foodSaturationLevel: number;
-            let foodExhaustionLevel: number;
-            let foodTimer: number;
-            let prevFoodLevel: number;
+        /**
+         * Generate numerical id for a Block.
+         * 
+         * @example
+         * var id = ModAPI.keygen.block("my_example_block");
+         * @param {string} blockId Textual id
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/keygen.html} Keygen Documentation 
+         */
+        function block(blockId: string): void;
 
-            function addStats(json: any): void;
-            function addExhaustion(json: any): void;
-            function setFoodLevel(json: any): void;
-            function setFoodSaturationLevel(json: any): void;
-            function getFoodLevel(): number;
-            function getPrevFoodLevel(): number;
-            function getSaturationLevel(): number;
-            function needFood(): boolean;
-        }
-
-        /**Equals to the player's `inventory` */
-        namespace inventory {
-            let currentItem: number;
-            let inventoryChanged: boolean;
-            let mainInventory: any[];
-            let armorInventory: any[];
-        }
-
-        /**Equals to the player's `capabilities` */
-        namespace capabilities {
-            let disableDamage: boolean;
-            let isFlying: boolean;
-            let allowFlying: boolean;
-            let isCreativeMode: boolean;
-            let allowEdit: boolean;
-            let flySpeed: number;
-            let walkSpeed: number;
-            function getFlySpeed(): number;
-            function getWalkSpeed(): number;
-            function setFlySpeed(json: any): void;
-            function setPlayerWalkSpeed(json: any): void;
-        }
-        let cameraYaw: number;
-        let chasingPosX: number;
-        let chasingPosY: number;
-        let chasingPosZ: number;
-        let experience: number;
-        let experienceLevel: number;
-        let experienceTotal: number;
+        /**
+         * Generate numerical id for an Entity.
+         * 
+         * @example
+         * var id = ModAPI.keygen.entity("my_example_entity");
+         * @param {string} entityId Textual id
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/keygen.html} Keygen Documentation
+         */
+        function entity(entityId: string): void;
     }
 
-    /**Represents the network handler.*/
-    namespace network{
-        let avRandomizer: any;
-        let cachedServerInfoData: any;
-        let capeCache: any;
-        let clientWorldController: any;
-        let currentFNAWSkinAllowedState: number;
-        let currentFNAWSkinForcedState: number;
-        let currentServerMaxPlayers: number;
-        let doneLoadingTerrain: number;
-        let eaglerMessageController: any;
-        let field_147308_k: number;
-        let gameController: any;
-        let guiScreenServer: any;
-        let hasRequestedServerInfo: number;
-        let id: number;
-        let isIntegratedServer: number;
-        let monitor: any;
-        let netManager0: any;
-        let notifManager: any;
-        let playerInfoMap: any;
-        let profile3: any;
-        let skinCache: any;
+    /**
+     * This is a key-value dictionary of all of the materials in the game.
+     *  
+     * It is generated upon init from the static variables of the Material class.
+     * You can also regenerate this by calling ModAPI.util.bootstrap().
+     * 
+     * @example <caption>to access the material class for portal, you can use: </caption>
+     * ModAPI.materials["portal"]
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let materials: any;
+
+    /**
+     * This is the minecraft instance for the client, generated upon init.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let mc: any;
+
+    /**
+     * This is the raw minecraft instance for the client, generated upon init.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let mcinstance: any;
+
+    /**
+     * This module is used to register metadata for mods such as their title, credits, icon and description.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/meta.html} Meta Documentation
+     */
+    namespace meta {
+        /**
+         * Once the client is fully loaded, creates a button in the mod manager GUI that runs the specified function when pressed.
+         * @param {Function} callback 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/meta.html} Meta Documentation
+         */
+        function config(callback: Function): void;
         
-        let addToSendQueue: (...args: any[]) => void;
-        let getEaglerMessageController: (...args: any[]) => void;
-        let getEaglerMessageProtocol: (...args: any[]) => void;
-        let getNetworkManager: (...args: any[]) => void;
-        let getPlayerInfo0: (...args: any[]) => void;
-        let getPlayerInfoMap: (...args: any[]) => void;
-        let handleChangeGameState: (...args: any[]) => void;
-        let handleSpawnObject: (...args: any[]) => void;
-        let onDisconnect: (p1: any) => void;
-        let sendEaglerMessage: (...args: any[]) => void;
+        /**
+         * Sets the credits of the mod. Character limit of 36.
+         * @param {string} credits
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/meta.html} Meta Documentation 
+         */
+        function credits(credits: string): void;
+
+        /**
+         * Sets the description of the mod. Character limit of 160.
+         * @param {string} desc 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/meta.html} Meta Documentation
+         */
+        function description(desc: string): void;
+
+        /**
+         * Sets the icon of the mod.
+         * 
+         * It can be extremely low res, it will not appear blurry.
+         * @param {string} iconURL 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/meta.html} Meta Documentation
+         */
+        function icon(iconURL: string): void;
+
+        /**
+         * Sets the title of the mod. Character limit of 16.
+         * 
+         * This is mandatory if any metadata is to be displayed.
+         * @param {string} title 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/meta.html} Meta Documentation
+         */
+        function title(title: string): void;
+        /**
+         * Sets the version of the mod. Appended after the title.
+         * @param {string} ver 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/meta.html} Meta Documentation
+         */
+        function version(ver: string): void;
+
+        /**
+         * Undocumented internals
+         */
+        let _configMap: any;
+        /**
+         * Undocumented internals
+         */
+        let _descriptionMap: any;
+        /**
+         * Undocumented internals
+         */
+        let _developerMap: any;
+        /**
+         * Undocumented internals
+         */
+        let _iconMap: any;
+        /**
+         * Undocumented internals
+         */
+        let _titleMap: any;
+        /**
+         * Undocumented internals
+         */
+        let _versionMap: any;
+    }
+
+    /**
+     * This is the minecraft instance for the client, generated upon init.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let Minecraft: any;
+
+    /**
+     * Undocumented internals
+     */
+    function onUpdate(): void;
+
+    /**
+     * Allows running java methods that are @Async/@Async dependent.
+     * 
+     * Calling async methods in an event or in a patch to a normal function will cause a stack implosion, characterised by the client/dedicated server hanging without any error messages.
+     * @param {Method | Constructor} asyncJavaMethod
+     * @returns {PromisifiedJavaRunner}
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/promisify.html} Promisify Documentation
+     */
+    function promisify(asyncJavaMethod: any): any;
+
+    /**
+     * ModAPI.reflect supplies a user friendly wrapper for accessing and interacting with java classes from javascript.
+     * 
+     * This is a wrapper around ModAPI.hooks, ModAPI.hooks._teavm and ModAPI.hooks._classMap that makes accessing and using internal java classes in mods much easier.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
+     */
+    namespace reflect {
+        /**
+         * An array of ReflectClasses, representing (almost) every java class.
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
+         */
+        let classes: any;
+
+        /**
+         * A map of every class.
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
+         */
+        let classMap: any;
         
-        let constructor: new () => any;
-        
+        /**
+         * This method is used to find a class by its id.
+         * 
+         * For example, to get the Minecraft class, you can use:
+         * 
+         * ModAPI.reflect.getClassById("net.minecraft.client.Minecraft")
+         * @param {string} classId 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
+         */
+        function getClassById(classId: string): ReflectClass;
 
+        /**
+         * This method is used to find a class by its name.
+         * 
+         * This runs slower than getClassById because it has to filter through all classes. Make sure to cache the result rather than calling it over and over again.
+         * 
+         * For example, to get the Minecraft class, you can use:
+         * 
+         * ModAPI.reflect.getClassById("Minecraft")
+         * @param {string} className 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
+         */
+        function getClassByName(className : string): ReflectClass;
+
+        /**
+         * Gets a super function from a reflect class. This is used to extend built in classes, like Block.
+         * 
+         * When called without a filter function, the filter defaults to (fn)=>fn.length === 1
+         * 
+         * See docs for more details.
+         * @param {ReflectClass} rClass Class to get Super function
+         * @param {Function?} filter Filter function
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
+         */
+        function getSuper(rClass: ReflectClass, filter: (fn: Function) => boolean): Function;
+
+        /**
+         * Copies methods from a reflect class and it’s parents onto a target native JavaScript class. 
+         * 
+         * This allows TeaVM to use these objects normally, without you having to manually reimplement every method. In other words, this is the equivalent of extending a class.
+         * @param {ReflectClass} rClass 
+         * @param {Class | ConstructorFunction} target 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
+         */
+        function prototypeStack(rClass: ReflectClass, target: any): void;
+
+        /**
+         * Marks the provided interface as a supertype of the target class.
+         * 
+         * JavaScript equivalent of the implements keyword
+         * @param {Class | ConstructorFunction} target 
+         * @param {ReflectClass} interface 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/reflect.html} Reflect Documentation
+         */
+        function implements(target: any, interface: ReflectClass): void;
     }
 
-    /**Represents the game's settings. */
-    namespace settings{
-        let advancedItemTooltips: number;
-        let allowBlockAlternatives: number;
-        let ambientOcclusion: number;
-        let anaglyph: number;
-        let chatColours: number;
-        let chatHeightFocused: number;
-        let chatHeightUnfocused: number;
-        let chatLinks: number;
-        let chatLinksPrompt: number;
-        let chatOpacity: number;
-        let chatScale: number;
-        let chatVisibility: any;
-        let chatWidth: number;
-        let chunkFix: number;
-        let clouds: number;
-        let debugCamEnable: number;
-        let deferredShaderConf: any;
-        let difficulty0: any;
-        let enableDynamicLights: number;
-        let enableFNAWSkins: number;
-        let enableProfanityFilter: number;
-        let enableUpdateSvc: number;
-        let enableVsync: number;
-        let fancyGraphics: number;
-        let fboEnable: number;
-        let field_181150_U: number;
-        let field_181151_V: number;
-        let field_181657_aC: number;
-        let field_183018_l: any;
-        let fog: number;
-        let forceUnicodeFont: number;
-        let fovSetting: number;
-        let fxaa: number;
-        let gammaSetting: number;
-        let guiScale: number;
-        let hasCreatedDemoWorld: number;
-        let hasHiddenPhishWarning: number;
-        let hasShownProfanityFilter: number;
-        let heldItemTooltips: number;
-        let hideDefaultUsernameWarning: number;
-        let hideGUI: number;
-        let hideJoinCode: number;
-        let hideServerAddress: number;
-        let hideVideoSettingsWarning: number;
-        let hud24h: number;
-        let hudCoords: number;
-        let hudFps: number;
-        let hudPlayer: number;
-        let hudStats: number;
-        let hudWorld: number;
-        let id: number;
-        let invertMouse: number;
-        let keyBindAttack: any;
-        let keyBindBack: any;
-        let keyBindChat: any;
-        let keyBindClose: any;
-        let keyBindCommand: any;
-        let keyBindDrop: any;
-        let keyBindForward: any;
-        let keyBindFunction: any;
-        let keyBindInventory: any;
-        let keyBindJump: any;
-        let keyBindLeft: any;
-        let keyBindPickBlock: any;
-        let keyBindPlayerList: any;
-        let keyBindRight: any;
-        let keyBindScreenshot: any;
-        let keyBindSmoothCamera: any;
-        let keyBindSneak: any;
-        let keyBindSprint: any;
-        let keyBindTogglePerspective: any;
-        let keyBindUseItem: any;
-        let keyBindZoomCamera: any;
-        let keyBindings: any;
-        let keyBindsHotbar: any;
-        let language: any;
-        let lastServer: any;
-        let limitFramerate: number;
-        let mapSoundLevels: any;
-        let mc3: any;
-        let mipmapLevels: number;
-        let monitor: any;
-        let mouseSensitivity: number;
-        let overrideHeight: number;
-        let overrideWidth: number;
-        let particleSetting: number;
-        let pauseOnLostFocus: number;
-        let reducedDebugInfo0: number;
-        let relayTimeout: number;
-        let renderDistanceChunks: number;
-        let resourcePacks: any;
-        let saturation: number;
-        let screenRecordAudioBitrate: number;
-        let screenRecordCodec: any;
-        let screenRecordFPS: number;
-        let screenRecordGameVolume: number;
-        let screenRecordMicVolume: number;
-        let screenRecordResolution: number;
-        let screenRecordVideoBitrate: number;
-        let setModelParts: any;
-        let shaders: number;
-        let shadersAODisable: number;
-        let showDebugInfo: number;
-        let showDebugProfilerChart: number;
-        let showInventoryAchievementHint: number;
-        let smoothCamera: number;
-        let snooperEnabled: number;
-        let thirdPersonView: number;
-        let touchControlOpacity: number;
-        let touchscreen: number;
-        let viewBobbing: number;
-        let voiceListenRadius: number;
-        let voiceListenVolume: number;
-        let voicePTTKey: number;
-        let voiceSpeakVolume: number;
-        let checkBadVideoSettings: (...args: any[]) => void;
-        let func_181147_e: (...args: any[]) => void;
-        let getKeyBinding: (...args: any[]) => void;
-        let getModelParts: (...args: any[]) => void;
-        let getOptionFloatValue: (...args: any[]) => void;
-        let getOptionOrdinalValue: (...args: any[]) => void;
-        let getSoundLevel: (...args: any[]) => void;
-        let loadOptions: (...args: any[]) => void;
-        let loadOptions0: (...args: any[]) => void;
-        let parseFloat: (...args: any[]) => void;
-        let saveOptions: (...args: any[]) => void;
-        let sendSettingsToServer: (...args: any[]) => void;
-        let setModelPartEnabled: (...args: any[]) => void;
-        let setOptionFloatValue: (...args: any[]) => void;
-        let setOptionKeyBinding: (...args: any[]) => void;
-        let setOptionValue: (...args: any[]) => void;
-        let setSoundLevel: (...args: any[]) => void;
-        let toJSONArray: (...args: any[]) => void;
-        let writeOptions: (...args: any[]) => void;
+    /**
+     * Used to unregister an event handler.
+     * @param {string} eventName 
+     * @param {Function} callback 
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/events.html} Events Documentation
+     */
+    function removeEventListener(eventName: string, callback: Function): void;
 
-        let constructor: new () => any;
-    }
+    /**
+     * Import required modules, such as player and network.
+     * 
+     * @example
+     * ModAPI.require("module")
+     * @param {string} componentName 
+     */
+    function require(componentName: string): void;
 
-    namespace blocks{
-        let acacia_door: any;
-        let acacia_fence: any;
-        let acacia_fence_gate: any;
-        let acacia_stairs: any;
-        let activator_rail: any;
-        let air: any;
-        let anvil: any;
-        let barrier: any;
-        let beacon: any;
-        let bed: any;
-        let bedrock: any;
-        let birch_door: any;
-        let birch_fence: any;
-        let birch_fence_gate: any;
-        let birch_stairs: any;
-        let bookshelf: any;
-        let brewing_stand: any;
-        let brick_block: any;
-        let brick_stairs: any;
-        let brown_mushroom: any;
-        let brown_mushroom_block: any;
-        let cactus: any;
-        let cake: any;
-        let carpet: any;
-        let carrots: any;
-        let cauldron: any;
-        let chest: any;
-        let clay: any;
-        let coal_block: any;
-        let coal_ore: any;
-        let cobblestone: any;
-        let cobblestone_wall: any;
-        let cocoa: any;
-        let command_block: any;
-        let crafting_table: any;
-        let dark_oak_door: any;
-        let dark_oak_fence: any;
-        let dark_oak_fence_gate: any;
-        let dark_oak_stairs: any;
-        let daylight_detector: any;
-        let daylight_detector_inverted: any;
-        let deadbush: any;
-        let detector_rail: any;
-        let diamond_block: any;
-        let diamond_ore: any;
-        let dirt: any;
-        let dispenser: any;
-        let double_plant: any;
-        let double_stone_slab: any;
-        let double_stone_slab2: any;
-        let double_wooden_slab: any;
-        let dragon_egg: any;
-        let dropper: any;
-        let emerald_block: any;
-        let emerald_ore: any;
-        let enchanting_table: any;
-        let end_portal: any;
-        let end_portal_frame: any;
-        let end_stone: any;
-        let ender_chest: any;
-        let farmland: any;
-        let fire: any;
-        let flower_pot: any;
-        let flowing_lava: any;
-        let flowing_water: any;
-        let furnace: any;
-        let glass: any;
-        let glass_pane: any;
-        let glowstone: any;
-        let gold_block: any;
-        let gold_ore: any;
-        let golden_rail: any;
-        let grass: any;
-        let gravel: any;
-        let hardened_clay: any;
-        let hay_block: any;
-        let heavy_weighted_pressure_plate: any;
-        let hopper: any;
-        let ice: any;
-        let iron_bars: any;
-        let iron_block: any;
-        let iron_door: any;
-        let iron_ore: any;
-        let iron_trapdoor: any;
-        let jukebox: any;
-        let jungle_door: any;
-        let jungle_fence: any;
-        let jungle_fence_gate: any;
-        let jungle_stairs: any;
-        let ladder: any;
-        let lapis_block: any;
-        let lapis_ore: any;
-        let lava: any;
-        let leaves: any;
-        let leaves2: any;
-        let lever: any;
-        let light_weighted_pressure_plate: any;
-        let lit_furnace: any;
-        let lit_pumpkin: any;
-        let lit_redstone_lamp: any;
-        let lit_redstone_ore: any;
-        let log: any;
-        let log2: any;
-        let melon_block: any;
-        let melon_stem: any;
-        let mob_spawner: any;
-        let monster_egg: any;
-        let mossy_cobblestone: any;
-        let mycelium: any;
-        let nether_brick: any;
-        let nether_brick_fence: any;
-        let nether_brick_stairs: any;
-        let nether_wart: any;
-        let netherrack: any;
-        let noteblock: any;
-        let oak_door: any;
-        let oak_fence: any;
-        let oak_fence_gate: any;
-        let oak_stairs: any;
-        let obsidian: any;
-        let packed_ice: any;
-        let piston: any;
-        let piston_extension: any;
-        let piston_head: any;
-        let planks: any;
-        let portal: any;
-        let potatoes: any;
-        let powered_comparator: any;
-        let powered_repeater: any;
-        let prismarine: any;
-        let pumpkin: any;
-        let pumpkin_stem: any;
-        let quartz_block: any;
-        let quartz_ore: any;
-        let quartz_stairs: any;
-        let rail: any;
-        let red_flower: any;
-        let red_mushroom: any;
-        let red_mushroom_block: any;
-        let red_sandstone: any;
-        let red_sandstone_stairs: any;
-        let redstone_block: any;
-        let redstone_lamp: any;
-        let redstone_ore: any;
-        let redstone_torch: any;
-        let redstone_wire: any;
-        let reeds: any;
-        let sand: any;
-        let sandstone: any;
-        let sandstone_stairs: any;
-        let sapling: any;
-        let sea_lantern: any;
-        let skull: any;
-        let slime_block: any;
-        let snow: any;
-        let snow_layer: any;
-        let soul_sand: any;
-        let sponge: any;
-        let spruce_door: any;
-        let spruce_fence: any;
-        let spruce_fence_gate: any;
-        let spruce_stairs: any;
-        let stained_glass: any;
-        let stained_glass_pane: any;
-        let stained_hardened_clay: any;
-        let standing_banner: any;
-        let standing_sign: any;
-        let sticky_piston: any;
-        let stone: any;
-        let stone_brick_stairs: any;
-        let stone_button: any;
-        let stone_pressure_plate: any;
-        let stone_slab: any;
-        let stone_slab2: any;
-        let stone_stairs: any;
-        let stonebrick: any;
-        let tallgrass: any;
-        let tnt: any;
-        let torch: any;
-        let trapdoor: any;
-        let trapped_chest: any;
-        let tripwire: any;
-        let tripwire_hook: any;
-        let unlit_redstone_torch: any;
-        let unpowered_comparator: any;
-        let unpowered_repeater: any;
-        let vine: any;
-        let wall_banner: any;
-        let wall_sign: any;
-        let water: any;
-        let waterlily: any;
-        let web: any;
-        let wheat: any;
-        let wooden_button: any;
-        let wooden_pressure_plate: any;
-        let wooden_slab: any;
-        let wool: any;
-        let yellow_flower: any;
+    /**
+     * Undocumented Internals
+     */
+    let required: any;
 
-    }
-
-
-
-    /** 
-    This is the Minecraft instance exposed to JavaScript. It has no wrapping, and so many properties will be illegible.
-    */
-    namespace mcinstance{
-        let $currentScreen : any[]
-        let $fpsCounter : number
-        let $displayHeight : number
-        let $displayWidth : number
-        let $serverName : String
-        let $currentServerData : any[]
-    }
-
-    namespace array{
-        function boolean(size)
-        function byte(size)
-        function char(size)
-        function double(size)
-        function float(size)
-        function int(size)
-        function object(jclass, size)
-        function short(size)
-    }
-
-    // TODO: add other globals and more comments
-
-    /** The version of the EaglerForge.*/
-    let version: string;
-    /**The brand of the Eaglercraft client, taken from ClientBrandRetriever.java */
-    let clientBrand: string;
-    let GNU: string;
-    let credits: Array<any>;
-    /**This method is used to add event listeners to the event name specified. */
-    function addEventListener(name: string, callback: any): void;
-    /**This method is used to remove event listeners to the event name specified. */
-    function removeEventListener(name: string, func: any, slow: any): void;
-    /**This method is used to tell `ModAPI` that a global needs to be generated. */
-    function require(component: string): void;
-    /**Force triggers a Mod API update. */
-    function update(): void;
-    /**Triggers a left click ingame. */
-    function clickMouse(): void;
-    /**Triggers a right click ingame. */
+    /**
+     * Triggers a right click ingame.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
     function rightClickMouse(): void;
-    /**Displays client-side message to user's ingame chat gui. how to use: `ModAPI.displayToChat({msg: "example"})` */
-    function displayToChat(json: any): void;
-    /**uwuifys your string...  how to use: `ModAPI.uwuify({string: "example"})` output: "exwmpwe"*/
-    function uwuify(json: any): string;
-    /**returns the current fps */
-    function getFPS(): number
-    /**returns the current screen as a string */
-    function currentScreen(): string
-    /**returns screen height */
-    function getdisplayHeight(): number
-    /**returns screen width */
-    function getdisplayWidth(): number
-    /**returns the FONT_HEIGHT */
-    function getFONT_HEIGHT(): number
-    /**returns the width of a string based on minecraft's font */
-    function getStringWidth(json: any)
-    /**draws your string to screen and needs to be ran when the `drawhud` event is called. the color parameter needs be hex but # is replaced with 0x */
-    function drawStringWithShadow(json: any): void
-    /**draws your string to screen WITHOUT THE SHADOW and needs to be ran when the `drawhud` event is called. the color parameter needs be hex but # is replaced with 0x */
-    function drawString(json: any): void
-    /**draws a rect to screen and needs to be ran when the `drawhud` event is called. the color parameter needs be hex but # is replaced with 0x */
-    function drawrect(json: any):void
+
+    /**
+     * This is the dedicated minecraft server in the service worker, generated when the serverstart event is fired.
+     * 
+     * It can only be accessed in the dedicated server’s context. (See ModAPI.dedicatedServer)
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let server: any;
+
+    /**
+     * This is the RAW dedicated Minecraft server in the service worker, generated when the serverstart event is fired.
+     * 
+     * It can only be accessed in the dedicated server’s context. (See ModAPI.dedicatedServer)
+     * 
+     * It can also be accessed using ModAPI.server.getRef()
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let serverInstance: any;
+
+    /**
+     * This is the Minecraft client’s settings. It is generated upon init.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let settings: any;
+
+    /**
+     * Undocumented Internals
+     * 
+     * probably related to freezeCalstack()
+     */
+    function unfreezeCallstack(): void;
+
+    /**
+     * ModAPI.util provides and exposes a large number of utilities for interacting with ModAPI.
+     * 
+     * Major thanks to BendieGames for locking in and doing these definitions :>
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+     */
+    namespace util {
+        /**
+         * This is the proxy configuration used for exposing ModAPI.items, ModAPI.blocks, ModAPI.enchantments and ModAPI.materials
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        let StaticProps_ProxyConf: any;
+        /**
+         * This is a non-recursive proxy config for removing prefixes from java objects.
+         * 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        let TeaVMArray_To_Recursive_BaseData_ProxyConf: any;
+        /**
+         * This is a recursive proxy config for removing prefixes from java objects. It handles properties (both object and array) as well as function outputs. Used for ModAPI.player, ModAPI.mc, ModAPI.world, ModAPI.network and more.
+         * 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        let TeaVM_to_Recursive_BaseData_ProxyConf: any;
+        /**
+         * Converts a javascript class to a java class, and the equivalent of using MyClass.class in java.
+         * @param {Class} inClass 
+         * @returns {JavaClass}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function asClass(inClass: any): any;
+        /**
+         * Regenerate proxies for ModAPI.items, .blocks, .materials, .enchantments
+         * 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function bootstrap(): void;
+        /**
+         * Gets a block by it’s ID
+         * @param {number} id 
+         * @returns {Block}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function getBlockById(id: number): any;
+        /**
+         * Gets a item by it’s ID
+         * @param {number} id 
+         * @returns {Item}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function getItemById(id: number): any;
+        /**
+         * Gets a block from an ItemBlock instance.
+         * 
+         * @param {Item} item 
+         * @returns {Block}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function getBlockFromItem(item: any): any;
+        /**
+         * Undocumented
+         */
+        function getCompiledName(classId: any): any;
+        /**
+         * Undocumented
+         * 
+         * with a side of reverse yeeing
+         */
+        function getCompiledNameFromPackage(classId: any): any;
+        /**
+         * Gets the ID of a block
+         * @param {Block} block
+         * @returns {number}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function getIdFromBlock(block: any): any;
+        /**
+         * Gets an item from a block.
+         * @param {Block} block
+         * @returns {ItemBlock} 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function getItemFromBlock(block: any): any;
+        /**
+         * Takes a class id (eg: net.minecraft.client.Minecraft) and a method name (eg: middleClickMouse) and returns its key in ModAPI.hooks.methods.
+         * @example
+         * ModAPI.util.getMethodFromPackage(net.minecraft.client.Minecraft, middleClickMouse)
+         * @param {string} classId
+         * @param {string} methodName 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function getMethodFromPackage(classId: string, methodName: string): string;
+        /**
+         * Finds the nearest property name to the one you specify (suffix based). This is used to mitigate teavm adding random suffixes to properties.
+         * @param {object} object
+         * @param {string} property 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function getNearestProperty(object: object, property: string): string;
+        /**
+         * Returns the hash of a string.
+         * @param {string} string 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function hashCode(string: string): string;
+         /**
+         * Checks whether the thread is in a critical state.
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+         function isCritical(): boolean;
+         /**
+         * Converts a java string to a javascript string.
+         * @param {JavaString} jclString 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+         function jclStrToJsStr(jclString: any): string;
+         /**
+         * Undocumented
+         * 
+         * returns a java array btw
+         */
+         function makeArray(arrayClass: any, arrayContents: Array<any>): any;
+         /**
+         * Returns a modifies version of a function, where the patcher function can be used to modify the contents of a function.
+         * @param {Function} fn 
+         * @param {Function} patcherFunction 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+         function modifyFunction(fn: Function, patcherFunction: Function): string;
+          /**
+         * Writes a new javascript string into the contents of a java string.
+         * @param {JavaString} jclString 
+         * @param {string} contents 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function setStringContent(jclString: any, contents: string): void;
+        /**
+         * Converts a javascript string to a java string, for use in java methods and constructors.
+         * @param {string} jsString 
+         * @returns {JavaString}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function str(jsString: string): any;
+        /**
+         * Converts a javascript string to a java string, for use in java methods and constructors.
+         * @param {string} jsString 
+         * @returns {JavaString}
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function string(jsString: string): any;
+        /**
+         * Encodes a string into a uint16array.
+         * @param {string} string 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function stringToUint16Array(string: string): Uint16Array;
+         /**
+         * Converts a java string to a javascript string.
+         * @param {JavaString} jclString 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function unstr(jclString: any): string;
+         /**
+         * Converts a java string to a javascript string.
+         * @param {JavaString} jclString 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function unstring(jclString: any): string;
+         /**
+         * Converts a java string to a javascript string.
+         * @param {JavaString} jclString 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function ustr(jclString: any): string;
+        /**
+         * Returns a wrapper around native java objects, removing prefixes and fixing method outputs.
+         * @param {JavaObject} obj 
+         * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/utils.html} Util Documentation
+         */
+        function wrap(obj: any): object;
+     }
+    
+    /**
+     * The version of ModAPI.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let version: string;
+
+    /**
+     * Only accessible after ModAPI.require("player") is called, this is the local player entity. It is regenerated every time the update event is called.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let player: any;
+
+    /**
+     * Only accessible after ModAPI.require("world") is called, this is the client-side world. It is regenerated every time the update event is called.
+     * @see {@link https://eaglerforge.github.io/EaglerForgeInjector/docs/apidoc/} Documentation
+     */
+    let world: any;
+
+    /**
+     * Only accessible after ModAPI.require("network") is called, this is the client’s networking handler. It is regenerated every time the update event is called.
+     */
+    let network: any; 
 }
 
+/**
+ * Part of EFI Modloader
+ * 
+ * Makes an IDBrequest become a promise.
+ * @param {IDBRequest} request 
+ */
+declare function promisifyIDBRequest(request: IDBRequest): Promise<any>;
+/**
+ * Part of EFI ModLoader
+ * 
+ * Gets the "EF_MODS" IDB database.
+ */
+declare function getDatabase():Promise<any>;
 
-// vexdev was here...
-// radmanplays was here too.
+/**
+ * Part of EFI ModLoader
+ * 
+ * Gets the mods array (mods.txt)
+ */
+declare function getMods(): Promise<Array<string>>;
+/**
+ * Part of EFI ModLoader
+ * 
+ * Gets the source of a mod
+ * @param {string} mod 
+ */
+declare function getMod(mod: string): Promise<string>;
+
+/**
+ * Part of EFI ModLoader
+ * 
+ * Saves the mods array provided to IDB (mods.txt)
+ * @param {Array<string>} mods 
+ */
+declare function saveMods(mods: Array<string>): Promise<void>;
+
+/**
+ * Part of EFI ModLoader
+ * 
+ * Gets the mod from the url provided and adds it to IDB
+ * @param {string} src 
+ */
+declare function addMod(src: string): Promise<void>;
+
+/**
+ * Part of EFI ModLoader
+ * 
+ * Adds a mod from raw source code
+ * @param {string} mod 
+ * @param {string} textContents 
+ */
+declare function addFileMod(mod: string, textContents: string): Promise<void>;
+
+/**
+ * Part of EFI ModLoader
+ * 
+ * Removes the mod at the specified index (of mods.txt)
+ * @param {number} index 
+ */
+declare function removeMod(index: number): Promise<void>;
+
+/**
+ * Part of EFI ModLoader
+ * 
+ * Removes all mods from IDB
+ */
+declare function resetMods(): Promise<void>;
+
+/**
+ * Part of EFI ModLoader
+ * 
+ * The actual modloader code. Takes in an array of mod identifiers (normally from mods.txt during EFI startup)
+ * @param {Array<string>} modsArr 
+ */
+declare function modLoader(modsArr: Array<string>): Promise<any>;
+
+/**
+ * Part of EFI ModGUI
+ * 
+ * This function gets called to display the mods GUI
+ * @param cb not documented
+ */
+declare function modapi_displayModGui(cb: any): Promise<any>;
+
+/**
+ * Part of EFI ModGUI
+ * 
+ * This is called when the "Add Mod From URL" button is pressed
+ */
+declare function modapi_addmod(): Promise<void>;
+
+/**
+ * Part of EFI ModGUI
+ * 
+ * This is called when the "Clear All Mods" button is pressed
+ */
+declare function modapi_clearmods(): Promise<void>;
+
+/**
+ * Now with A.I.D.S (automatically injected dedicated server) and H.I.V (Hyper Injected Virtual-debugger)!
+ * 
+ * This is the code that generates ModAPI and starts EaglerForge
+ * 
+ * There should be no reason to overide this as its long ran before any mods are loaded
+ */
+declare function modapi_postinit(): any;
+
+/**
+ * Undocumented internals
+ * 
+ * I really dont know why this is separated from the regular events list
+ */
+declare let modapi_specialevents: Array<string>;
+
+/**
+ * Part of EFI ModGUI
+ * 
+ * This is called when the "Upload Mod (.js)" button is pressed
+ */
+declare function modapi_uploadmod(): Promise<void>;
+
+//you scrolled down to see the line count didnt you
