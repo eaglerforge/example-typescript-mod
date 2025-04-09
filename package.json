@@ -1,5 +1,5 @@
 {
-  "name": "Eaglerforge ModAPI package for npm",
+  "name": "Eaglerforge ModAPI",
   "version": "1.0.0",
   "description": "Example typescript mod for eaglerforge.",
   "scripts": {
