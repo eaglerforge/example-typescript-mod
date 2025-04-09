@@ -1,16 +1,30 @@
 {
-  "name": "Eaglerforge ModAPI",
-  "version": "1.0.0",
+  "name": "ef-example-mod",
+  "version": "1.0.1",
   "description": "Example typescript mod for eaglerforge.",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc"
   },
   "author": "BendieGames",
+  "repository": {
+    "url": "https://github.com/BendieGamer/example-typescript-mod"
+  },
+  "keywords": [
+    "eaglerforge",
+    "mod",
+    "typescript"
+  ],
+  "bin": {
+    "ef-example-mod": "./index.js"
+  },
   "devDependencies": {
     "css-loader": "^6.8.1",
     "ts-loader": "^9.4.4",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "ef-example-mod": "file:"
   }
 }

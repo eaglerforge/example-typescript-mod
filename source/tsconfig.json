@@ -2,6 +2,7 @@
     "compilerOptions": {
         "module": "commonjs",
         "lib": ["es5", "es6", "dom"],
-        "rootDir": "src"
+        "rootDir": "src",
+        "removeComments": true
     }
 }
