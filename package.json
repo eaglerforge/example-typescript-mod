@@ -1,6 +1,6 @@
 {
   "name": "ef-example-mod",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Example typescript mod for eaglerforge.",
   "scripts": {
     "build": "tsc"

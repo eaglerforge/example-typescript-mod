@@ -5,6 +5,7 @@ const path = require('path');
 
 const sourceDir = path.join(__dirname, 'source', 'src');
 const tsconfigPath = path.join(__dirname, 'source', 'tsconfig.json'); 
+const readmePath = path.join(__dirname, 'source', 'README.md'); 
 const destDir = process.cwd(); 
 
 
@@ -59,7 +60,17 @@ function copyTsconfig(src, dest) {
         }
     });
 }
-
+function copyReadMe(src, dest) {
+    fs.copyFile(src, path.join(dest, 'README.md'), err => {
+        if (err) {
+            console.error(`Error copying tsconfig.json: ${err}`);
+        } else {
+            console.log(`Copied tsconfig.json to ${dest}`);
+            console.log('Thank you for using ef template!');
+        }
+    });
+}
 console.log("Copying src folder and tsconfig.json from the source folder...");
 copyDirectory(sourceDir, path.join(destDir, 'src')); 
 copyTsconfig(tsconfigPath, destDir); 
+copyReadMe(readmePath, destDir); 
