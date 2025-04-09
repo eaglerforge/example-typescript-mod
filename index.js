@@ -4,14 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 const sourceDir = path.join(__dirname, 'source', 'src');
-const tsconfigPath = path.join(__dirname, 'source', 'tsconfig.json'); 
-const destDir = process.cwd(); 
+const tsconfigPath = path.join(__dirname, 'source', 'tsconfig.json');
+const destDir = process.cwd();
 
 const filesToCopy = [
     'main.ts',
     'ModAPI.d.ts'
 ];
-
 
 function copyFiles(src, dest, files) {
     files.forEach(file => {
@@ -26,7 +25,6 @@ function copyFiles(src, dest, files) {
         });
     });
 }
-
 
 function copyTsconfig(src, dest) {
     fs.copyFile(src, path.join(dest, 'tsconfig.json'), err => {
