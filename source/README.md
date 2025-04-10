@@ -1,5 +1,5 @@
 # Example TypeScript Mod
-
+To install first run `npm install ef-example-mod`
 ## How to build?
 
 You can use typescript to compile your mod.
