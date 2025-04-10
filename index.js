@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
+
 const sourceDir = path.join(__dirname, 'source', 'src');
 const tsconfigPath = path.join(__dirname, 'source', 'tsconfig.json'); 
 const readmePath = path.join(__dirname, 'source', 'README.md'); 
