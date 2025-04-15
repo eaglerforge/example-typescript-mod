@@ -52,6 +52,15 @@ declare namespace ModAPI {
     let GNU: string;
     
     /**
+     * This boolean is set to true if the eaglerforge client is running on 1.12 
+     * ( This is has been added because peyton changed stuff so now some stuff is diffrent for the API  )
+     * @example
+     * if (ModAPI.is_1_12) {
+     *     console.log('You are using eaglerforge on 1.12!');
+     * };
+     */
+    let is_1_12: boolean;
+    /**
      * Lets you easily add credits to Eaglercraft’s credits.txt
      * @example
      * ModAPI.addCredit("My Cool Mod", "Username", " - Coded the mod\n - Wrote some credits")
